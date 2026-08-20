@@ -93,11 +93,34 @@ Generate **one real florist product photo**:
 
 Show the reference separately in the conversation/UI. Never composite it into the final bouquet image.
 
+## Image quality and provenance — hard constraint
+
+The final bouquet image must be the **direct standalone output of the host's native image-generation tool** for that one reference.
+
+Do not use any of the following as the final bouquet image:
+- a crop from a collage, contact sheet, infographic, comparison board or screenshot;
+- an enlarged crop from another generated image;
+- a thumbnail extracted from a multi-case render;
+- a recompressed preview when the original direct generation is available;
+- a Python/graphics reconstruction used as a substitute for native image generation.
+
+Cropping, resizing or assembling images is allowed only for **secondary review/comparison sheets after the standalone bouquet images already exist**. Those secondary sheets must never replace the underlying direct outputs.
+
+Before delivery, inspect image quality. Reject and regenerate if:
+- flower-petal edges or wrapping textures are visibly soft because of cropping/upscaling/compression;
+- the image is noticeably lower-detail than a normal direct generation;
+- there are screenshot/UI borders or remnants of another layout;
+- the result is not traceable to one direct image-generation call for one reference.
+
+**One reference → one native image-generation call → one original bouquet image.**
+
 ## Batch / evaluation rule
 
 Even when testing many references, **image generation is one reference per call**.
 
 Never ask the image model to render a test matrix, contact sheet, before/after board, numbered gallery or evaluation infographic. Those may be assembled afterward outside the generator for review, but every underlying generated artifact must first be a clean standalone bouquet image.
+
+When running golden-sample evaluations, keep the original direct bouquet files and compare them against the corresponding reference images. Never score a cropped or upscaled derivative as if it were the model's original result.
 
 ## Final check
 
@@ -109,7 +132,8 @@ Reject/revise if:
 - anything is physically unreproducible;
 - flower/species count is excessive for the visual effect;
 - it looks unnecessarily expensive;
-- image and build sheet disagree.
+- image and build sheet disagree;
+- the delivered bouquet image is not a crisp direct native generation.
 
 The target is:
 
