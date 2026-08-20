@@ -1,324 +1,173 @@
 ---
 name: image-to-bouquet
-description: Translate any reference image into a visually faithful, florist-buildable bouquet. Use when the user wants a photo, poster, album cover, illustration, logo, film still, game image, or other visual reference turned into a bouquet. A complete run MUST generate a bouquet image and a florist-ready build sheet; text-only analysis or prompts are incomplete.
+description: Turn any reference image into one visually faithful, florist-buildable bouquet. Use for photos, posters, album covers, illustrations, logos, film stills, game images, and other visual references. A complete run outputs the reference image for comparison, one clean bouquet image, and a separate florist build sheet. The bouquet must be physically reproducible and cost-conscious by default.
 ---
 
 # Image to Bouquet
 
-## Purpose
+Turn a reference image into **one real bouquet**, not a fantasy illustration and not an infographic.
 
-Turn a reference image into **one coherent bouquet** that preserves the image's visual identity while remaining realistic for a florist to build.
+## Required result
 
-A complete result has two required outputs:
+Show the user:
 
-1. `bouquet.png` (or equivalent image artifact)
-2. `bouquet-spec.md` (or equivalent florist-ready execution sheet)
+1. **Reference image** — separately, for comparison.
+2. **Bouquet image** — the primary result. It must contain only the finished bouquet and a simple photographic background.
+3. **Florist build sheet** — separate text/document. Never place the build sheet, palette, labels, reference thumbnail, arrows, or design notes inside the bouquet image.
 
-The bouquet image is the primary user-facing result. The build sheet explains how to reproduce that exact bouquet.
+A text prompt without an actual bouquet image is incomplete.
 
-**Never finish with only analysis, a color palette, flower suggestions, or an image-generation prompt.**
-
-## Product boundary
-
-This is not a generic flower recommender and not a literal object-copying task.
-
-The task is visual translation:
+## Core task
 
 ```text
-Reference Image
-→ Visual DNA
-→ Translation Decisions
-→ Buildable Bouquet Spec
-→ Bouquet Image
-→ Consistency Check
+reference image
+→ extract visual identity
+→ translate it into real floral language
+→ lock a buildable, cost-conscious recipe
+→ generate the bouquet image
+→ check image against recipe and reference
 ```
 
-The goal is not “use flowers with similar colors.” The goal is:
+Do **not** copy every object from the reference. Preserve its visual identity through color hierarchy, silhouette, texture, density, negative space, and 1–3 identity anchors.
 
-> Preserve what makes the reference visually recognizable after changing the medium from image to bouquet.
+## 1. Read the reference
 
-## Default interaction
+Extract only what matters:
 
-Do not force the user through a questionnaire.
+- dominant / secondary / accent colors and their rough proportions;
+- brightness, saturation, warm/cool balance;
+- composition: centered/asymmetric, tall/wide, dense/airy, directional/static;
+- texture: matte, glossy, metallic, translucent, soft, rough, etc.;
+- mood;
+- at most **1–3 identity anchors** whose loss would make the result generic.
 
-If the user only supplies an image, produce a useful first result immediately. Infer a reasonable medium hand-held bouquet unless the reference clearly calls for another scale or the user gives size, budget, recipient, flower type, freshness, season, or material constraints.
+Small accent colors may matter more than their area. Do not average the image into a dull palette.
 
-When assumptions materially affect execution, state them briefly in the build sheet instead of blocking generation.
+## 2. Translate into bouquet language
 
-## Pass A — Extract the Visual DNA
+Use this mapping:
 
-Read the image as a composition, not as a list of objects.
+- **Color →** flowers, foliage, wrapping, ribbon.
+- **Composition →** bouquet silhouette, height, width, focal position, density, negative space.
+- **Texture →** flower surface, leaves, wrapping finish, transparency, preserved/dried material.
+- **Symbol →** indirect floral/structural suggestion only when useful.
+- **Mood →** restraint, saturation, spacing, material choice.
 
-Extract:
+### Symbol rule — very important
 
-### 1. Palette
-Identify:
-- dominant colors;
-- secondary colors;
-- accent colors;
-- approximate visual percentage of each;
-- black/white/neutral balance;
-- saturation;
-- brightness;
-- warm/cool relationship;
-- gradients or iridescence when visually important.
+A reference may contain planets, portals, logos, cartoon characters, prisms, stars, buildings, faces, or other objects.
 
-Do not average the image into a dull palette. Preserve small but identity-critical accent colors.
+**Do not place literal miniature objects, floating planets, glowing portals, crystals, figurines, logos, printed cards, or impossible props into the bouquet just because they exist in the reference.**
 
-### 2. Composition
-Identify:
-- visual center;
-- left/right or top/bottom weight;
-- symmetry/asymmetry;
-- density versus negative space;
-- directionality;
-- major large, medium, and small shapes;
-- whether the image feels compact, vertical, horizontal, radiating, layered, floating, or fragmented.
-
-### 3. Texture and material impression
-Identify qualities such as:
-- matte / glossy;
-- metallic / pearlescent;
-- translucent / opaque;
-- soft / hard;
-- airy / dense;
-- organic / geometric;
-- smooth / rough;
-- hazy / crisp.
-
-### 4. Mood
-Infer only what is visually supported, such as:
-- dreamy;
-- quiet;
-- playful;
-- futuristic;
-- romantic;
-- brutal;
-- nostalgic;
-- cosmic;
-- minimal;
-- theatrical.
-
-Mood controls restraint and material choice. It is not decoration added on top.
-
-### 5. Identity anchors
-Find at most 1–3 visual features whose loss would make the translation feel generic.
+Translate them indirectly with ordinary florist materials when possible. If an element cannot be translated naturally, omit it rather than turning the bouquet into a prop sculpture.
 
 Examples:
-- a neon green portal against deep navy;
-- one saturated red slash in a black image;
-- a silver/blue light wash;
-- a pink carousel silhouette;
-- a rainbow emerging from black;
-- a repeated circular form.
+- green portal → one concentrated lime-green floral mass or circular color rhythm, **not a glowing vortex object**;
+- starry sky → sparse white/yellow filler points, **not floating planets**;
+- rainbow → a restrained sequence of colored flowers, **not a plastic rainbow prop**.
 
-These anchors may become flower choices, silhouette decisions, wrapping, line elements, or restrained accents. Do not mechanically reproduce copyrighted artwork or insert the source image into the bouquet unless the user explicitly asks for that.
+Only use literal props when the user explicitly asks for them.
 
-## Pass B — Translate Visual DNA into Bouquet Language
+## 3. Reality and reproducibility are hard constraints
 
-Use these mappings as principles, not rigid lookup tables.
+The generated bouquet must look like something a competent florist could actually assemble from purchasable flowers and standard florist materials.
 
-### Color → flower / foliage / wrapping / ribbon
+Never invent:
+- impossible flower anatomy;
+- flowers fused into glowing objects;
+- floating decorations with no support;
+- physically implausible stem arrangements;
+- materials that appear to levitate;
+- fantasy light sources embedded in flowers unless the build sheet explicitly uses a real, ordinary product such as florist-safe micro lights and the user asked for that effect.
 
-Assign colors according to visual role:
-- dominant image color → dominant bouquet mass or wrapping field;
-- secondary colors → supporting flower groups;
-- small high-contrast accents → limited focal flowers or line accents;
-- neutrals → breathing room, foliage, paper, or base flowers.
+When an exact digital color is rare in fresh flowers, prefer one of these, in order:
 
-Preserve color hierarchy. Do not give every extracted color equal area.
+1. shift that color to wrapping/ribbon;
+2. use a common dyed/preserved/artificial floral material and say so;
+3. choose the nearest realistic flower color.
 
-### Composition → silhouette / height / density / focal point
+Do not pretend an uncommon color exists naturally.
 
-Translate large-scale geometry into the bouquet:
-- strong vertical image → taller stems / upward movement;
-- broad horizontal image → wider fan or lateral spread;
-- centered symmetry → controlled balanced bouquet;
-- asymmetry → off-center focal mass with intentional counterweight;
-- large negative space → fewer flowers, clearer gaps, restrained filler;
-- dense image → fuller layering, but still buildable.
+## 4. Cost control is the default
 
-### Texture → materials
+Unless the user asks for a luxury bouquet, design a **cost-conscious S–M bouquet**.
 
-Use flower surface, foliage, wrapping, ribbon, dried material, metallic/pearlescent elements, transparency, and layering to carry texture.
+Default targets:
 
-Do not rely on color alone when texture is a major part of the source identity.
+- about **30–40 cm wide**;
+- usually **3–5 flower/foliage types total**;
+- roughly **7–12 visible main flower heads/stems**;
+- small amounts of inexpensive filler/foliage are allowed but must not make the bouquet look overfilled;
+- at most **1–2 premium/specialty materials**, used only when they carry important visual identity;
+- use wrapping and foliage to carry large color areas instead of buying many expensive flowers;
+- avoid unnecessary species variety: one flower type may perform multiple visual roles;
+- avoid dense “everything everywhere” arrangements unless density is essential to the reference.
 
-### Symbol → accent
+Prefer a small number of strong decisions over many different flowers.
 
-Translate symbols indirectly when possible.
+If a visual effect can be achieved either by adding five more flowers or by changing the wrapping paper, prefer the wrapping paper.
 
-Prefer:
-- one arcing stem instead of a literal printed rainbow;
-- radiating line flowers instead of a pasted starburst;
-- a circular floral opening instead of a copied portal graphic;
-- silver structural leaves instead of a logo cutout.
+The build sheet should state the cost level (`low / medium / high`) and offer cheaper substitutions for premium materials.
 
-Literal printed props should be used only when the user requests them or when the reference cannot remain recognizable without them.
+## 5. Lock the florist recipe before image generation
 
-### Mood → restraint
+Create a concise internal recipe first, then generate the image from it.
 
-Mood determines how much to include:
-- quiet/minimal references require fewer species, more air, lower saturation;
-- theatrical references may support larger contrast and denser focal structure;
-- futuristic references may use metallic, translucent, unusual gradients, or sharper structure;
-- nostalgic references may prefer softer color transitions and less synthetic contrast.
+The separate florist build sheet must contain:
 
-## Pass C — Make It Buildable
+- size and silhouette;
+- flower/foliage/material list;
+- count or small range for each material;
+- placement/role;
+- wrapping paper and ribbon;
+- short assembly order;
+- cost level;
+- cheaper substitutions;
+- `must preserve` visual decisions;
+- `avoid` decisions.
 
-Before generating the image, lock a florist-executable plan.
+The recipe is authoritative. If the generated image violates it, regenerate/edit the image. Do not rewrite the recipe afterward to excuse an accidental image.
 
-The plan must include:
+## 6. Bouquet-image rules
 
-### Bouquet profile
-- intended size: XS / S / M / L / XL or approximate width × height;
-- hand-tied / presentation bouquet / arm bouquet / other relevant structure;
-- silhouette;
-- focal location;
-- density and negative-space target.
+The final generated image must:
 
-### Flower recipe
-For every material group specify:
-- flower / foliage / decorative material;
-- color or treatment;
-- count when practical, otherwise percentage/range;
-- role: focal / secondary / filler / line / foliage / accent;
-- approximate placement.
+- show **one finished bouquet** clearly;
+- show only the bouquet plus a simple studio or natural photographic background;
+- look like a real florist product photo;
+- match the locked recipe;
+- preserve the reference's color hierarchy and composition character;
+- use plausible flower sizes and stem counts;
+- remain cost-conscious unless told otherwise;
+- contain **no text**;
+- contain **no design panel**;
+- contain **no palette**;
+- contain **no reference-image inset**;
+- contain **no florist checklist**;
+- contain **no watermark**;
+- contain **no decorative fantasy object that is not in the build recipe**.
 
-Do not invent a botanically impossible flower solely to match a digital color. When a precise color is uncommon naturally, use a realistic dyed/preserved/artificial option or shift that color into wrapping/materials and state the choice.
+The reference image is shown separately in the conversation/UI for comparison; it must not be composited into the bouquet image.
 
-### Wrapping and finishing
-Specify:
-- outer paper;
-- inner paper / translucent layer if used;
-- number of visible layers when important;
-- paper color and finish;
-- ribbon color, width, and finish;
-- optional wire, pearl, acrylic, metallic, dried, or other accent materials.
+## 7. Final check
 
-### Assembly order
-Give a concise build sequence, for example:
-1. establish line and height;
-2. place focal flowers;
-3. build secondary masses;
-4. add fillers/foliage while preserving negative space;
-5. wrap in stated layer order;
-6. tie and rotate-check the focal face.
+Before delivery, reject and revise the bouquet if any of these are true:
 
-### Substitution rules
-Give substitutions by **visual role**, not merely species.
+- it is visually generic and has lost the reference identity;
+- it contains literal fantasy props that a florist could not reproduce;
+- it uses too many flowers/species for the effect achieved;
+- it appears unnecessarily expensive;
+- it is much denser than the reference needs;
+- the image contains labels, instructions, or an inset reference;
+- the flower counts/structure disagree with the build sheet;
+- a florist could not plausibly rebuild it from the written recipe.
 
-For example:
-- “If blue delphinium is unavailable, substitute another cool blue line flower of similar height; do not replace it with a compact blue rose.”
+Judge success on five axes:
 
-### Must preserve / must avoid
-List the 3–6 visual decisions that most affect identity.
+1. visual identity transfer;
+2. color/composition fidelity;
+3. physical reproducibility;
+4. cost efficiency;
+5. image ↔ build-sheet consistency.
 
-Examples:
-- preserve one neon-green focal area against dark navy;
-- keep the bouquet asymmetric;
-- retain at least 20% visual breathing room;
-- avoid warm kraft paper;
-- avoid turning every accent into a separate flower species;
-- avoid a conventional round rose bouquet when the reference is angular or sparse.
-
-## Pass D — Generate the Bouquet Image
-
-Use the host's native image-generation or image-editing capability to create the final bouquet image.
-
-**An image-generation prompt is an internal implementation detail, not a final output.**
-
-### Image requirements
-The final image should:
-- show one finished bouquet clearly;
-- look physically buildable;
-- follow the locked flower recipe, hierarchy, silhouette, palette, and wrapping;
-- show realistic stem/flower scale and plausible material behavior;
-- keep the bouquet itself as the subject;
-- avoid unnecessary text, labels, watermarks, moodboard panels, or an inset copy of the reference image unless explicitly requested;
-- be high enough resolution to inspect color, structure, and wrapping.
-
-A clean studio, neutral, or contextually compatible background is acceptable, but background styling must not compensate for a weak bouquet translation.
-
-### Spec is authoritative
-The build sheet is the construction contract.
-
-If the generated image materially violates the locked spec, regenerate or edit the image. Do **not** silently rewrite the spec afterward just to match an accidental generation result.
-
-## Pass E — Consistency Check
-
-Before completion, compare the image against both the reference and build sheet.
-
-Score mentally on five axes:
-
-1. **Identity transfer** — does it still feel like the source image after removing literal source objects?
-2. **Color hierarchy** — are dominant/secondary/accent proportions preserved?
-3. **Composition transfer** — did the source's balance, direction, density, and negative space survive?
-4. **Buildability** — could a florist plausibly assemble this?
-5. **Image/spec consistency** — does the generated bouquet match the written recipe?
-
-If any axis is obviously poor, revise before delivering.
-
-## Required florist build-sheet format
-
-Use this concise structure:
-
-```markdown
-# Bouquet Build Sheet
-
-## Design intent
-One short paragraph explaining what visual identity is being preserved.
-
-## Visual DNA
-- Palette: ...
-- Mood: ...
-- Composition: ...
-- Identity anchors: ...
-
-## Bouquet profile
-- Size: ...
-- Shape: ...
-- Focal point: ...
-- Density / negative space: ...
-
-## Flower recipe
-| Material | Color / treatment | Amount | Role | Placement |
-| --- | --- | ---: | --- | --- |
-
-## Wrapping & finishing
-- ...
-
-## Assembly
-1. ...
-
-## Substitutions
-- ...
-
-## Must preserve
-- ...
-
-## Avoid
-- ...
-```
-
-## Completion behavior
-
-Normal completion means presenting:
-
-1. the final bouquet image;
-2. the florist build sheet.
-
-Optional analysis may follow, but it must not displace the image as the main result.
-
-If the host has no image-generation/editing capability, state clearly that the required image output cannot be completed in that environment. Do not claim the Skill succeeded by returning only a prompt.
-
-## Non-goals
-
-Do not:
-- merely name flowers matching sampled colors;
-- produce a generic round bouquet for every image;
-- copy every object from the reference literally;
-- add decorative symbols that overwhelm the flowers;
-- generate a fantasy bouquet that cannot be built while calling it florist-ready;
-- replace the final bouquet image with a moodboard, palette, SVG diagram, or text description;
-- make the user do the visual-analysis work the Skill is supposed to perform.
+The best result is **not the most spectacular bouquet**. It is the simplest real bouquet that still makes the user say: “yes, this came from that image.”
