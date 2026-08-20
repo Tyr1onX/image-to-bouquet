@@ -7,137 +7,110 @@ description: Turn any reference image into one realistic, cost-conscious, floris
 
 Turn **one image into one real bouquet**.
 
-The reference may be a landscape, street photo, architecture, portrait, personal photograph, illustration, poster, album cover, or abstract image. The subject itself is not the thing to reproduce. Treat the reference as a source of **high-level visual language**.
+The source may be anything. Treat it as a source of **high-level visual language**, not content to reproduce.
 
-## Preserve only these four layers
+## Read only four layers
 
-1. **Color hierarchy** — dominant, secondary, accent colors and rough proportions.
-2. **Geometry / composition** — tall or wide, centered or asymmetric, dense or airy, directional or static, major blocks and negative space.
+1. **Color hierarchy** — dominant / secondary / accent colors and rough proportions.
+2. **Geometry** — tall/wide, centered/asymmetric, dense/airy, major blocks, direction and negative space.
 3. **Texture** — soft, rough, glossy, matte, translucent, metallic, natural, geometric, etc.
-4. **Visual mood** — calm, playful, cold, warm, dreamy, restrained, dramatic, nostalgic, futuristic, and similar visually grounded qualities.
+4. **Mood** — calm, playful, cold, warm, dreamy, restrained, dramatic, nostalgic, futuristic, etc.
 
-Do not reconstruct the source artwork, scene, characters, logos, typography, or distinctive depicted objects.
+Do not reconstruct the scene, characters, typography, logos, buildings, objects or artwork details.
 
-A mountain does not become a mountain prop. A moon does not become a plastic moon. A portal does not become a glowing vortex. A person does not become a figurine. A building does not become a model building.
+## Safe abstraction
 
-## Safe abstraction rule
+For third-party artwork, branded media, posters, album art, film stills, illustrations or logos, use the source **only as high-level inspiration**.
 
-When the reference is third-party artwork, branded media, a poster, album art, film still, illustration, logo, or another potentially protected work, use it **only as high-level inspiration**.
+First reduce it internally to a neutral description, for example:
 
-Do not ask the image model to recreate, closely imitate, trace, extend, restage, or preserve the exact protected composition. Do not reproduce recognizable characters, logos, text, artwork details, or signature objects in the bouquet image.
+> deep navy dominant field + one concentrated lime-green mass + tiny warm-yellow accents + energetic asymmetric composition
 
-Instead, first abstract the source into a neutral description such as:
+Design from that abstraction. Do not ask the image model to recreate, trace, restage, extend or closely imitate the protected work. Do not reproduce recognizable characters, logos, text or signature objects.
 
-> deep navy field, one large lime-green circular emphasis, small yellow accents, energetic asymmetric composition, playful high contrast
+Use the same abstraction method for ordinary photos and user-created images; this keeps the Skill general rather than dependent on copyrighted media.
 
-Then design the bouquet **from that abstract visual description**, not by copying the original scene.
-
-For ordinary personal photos, landscapes, architecture, sunsets, textures, or user-created images, apply the same visual-abstraction method for consistency.
-
-## Translation rule
+## Translate
 
 ```text
-Color      → flowers / foliage / wrapping / ribbon
-Geometry   → bouquet silhouette / height / width / focal position / spacing
-Texture    → flower surface / foliage / paper finish / transparency / material choice
-Mood       → saturation / restraint / density / negative space
+Color    → flowers / foliage / wrapping / ribbon
+Geometry → silhouette / height / width / focal position / spacing
+Texture  → flower surface / foliage / paper finish / transparency
+Mood     → saturation / restraint / density / negative space
 ```
 
-Use the **fewest floral decisions needed** to preserve the visual relationship.
+Use the **fewest floral decisions needed**.
 
-## Reality is a hard constraint
+### Color hierarchy must survive
 
-The bouquet must look like something a normal competent florist could actually make.
+Do not merely extract colors; preserve their roles.
 
-Never generate:
-- floating objects;
-- planets, portals, crystals, figurines, logos, printed source images, or decorative props unless the user explicitly requests a real, buildable prop;
-- impossible flower anatomy;
-- glowing flowers or fantasy materials with no real-world equivalent;
-- physically implausible stem structures;
-- an arrangement that depends on CGI-like effects.
+- A large dark/background field should usually be carried by wrapping, foliage or negative space instead of being lost.
+- Preserve at least one meaningful secondary or accent color when it is important to the source identity.
+- Do not turn a green-dominant photo into generic green-and-white if a dark mass or warm accent is what gives the image its identity.
+- For many-color references, do not add a different flower species for every hue. Reuse one species in multiple available colors, use ribbon/wrapping, or reduce to the few strongest color groups.
 
-When a source color is difficult to obtain naturally, prefer:
-1. wrapping or ribbon;
-2. common dyed/preserved/artificial floral material, clearly stated in the build sheet;
-3. the nearest realistic flower color.
+## Reality + cost are hard constraints
 
-## Cost is a hard constraint by default
+Unless the user asks for luxury, default to a **cost-conscious S–M bouquet**:
 
-Unless the user asks for a luxury bouquet, design a **small-to-medium, cost-conscious bouquet**.
-
-Default target:
 - about 30–40 cm wide;
 - about 3–5 floral/foliage material types total;
 - about 7–12 visible main flower heads/stems;
-- only small amounts of filler and foliage;
+- small amounts of filler/foliage only;
 - at most 1–2 premium/specialty materials;
-- use wrapping, ribbon, foliage, and spacing to carry large color areas instead of adding more flowers;
-- do not add a new species just to represent every small color in the source.
+- prefer wrapping/ribbon/foliage over buying many extra flowers to carry a color.
 
-If the same visual effect can be achieved by changing wrapping instead of adding several flowers, choose wrapping.
+Never generate floating objects, planets, portals, crystals, figurines, logos, printed source images, impossible flowers, unsupported decorations or CGI-like effects.
 
-## Before image generation
+If a color is difficult in fresh flowers, prefer:
+1. wrapping/ribbon;
+2. common dyed/preserved/artificial floral material, disclosed in the build sheet;
+3. nearest realistic flower color.
 
-Lock a short florist recipe first:
-- bouquet size and silhouette;
-- flower/material names;
-- count or small range;
-- role and approximate placement;
+## Lock the recipe first
+
+Before generation, decide:
+- size and silhouette;
+- 3–5 material types and counts/ranges;
+- placement roles;
 - wrapping and ribbon;
-- cost level;
-- cheaper substitutions;
+- cost level and cheaper substitutes;
 - 2–4 `must preserve` decisions;
 - 2–4 `avoid` decisions.
 
-The recipe is authoritative. If the generated image does not match it, regenerate/edit the image. Do not rewrite the recipe afterward to justify an accidental image.
+The recipe is authoritative. If the image violates it, regenerate/edit the image rather than changing the recipe afterward.
 
-## Final bouquet image
+## Final image
 
-The final image is the primary result.
-
-It must show:
-- **one finished bouquet only**;
-- a simple studio or natural photographic background;
+Generate **one real florist product photo**:
+- one finished bouquet only;
+- simple studio/natural background;
 - realistic flower scale and stem count;
 - realistic florist wrapping;
-- the abstracted reference color hierarchy and geometric character;
-- a result that could actually be reproduced from the build sheet.
+- no text, palette, checklist, reference inset, moodboard, watermark or infographic;
+- no recognizable source artwork, character, logo or typography.
 
-It must contain **no**:
-- text;
-- palette;
-- infographic panel;
-- checklist;
-- reference-image inset;
-- watermark;
-- moodboard layout;
-- recognizable source artwork, characters, logos, or typography;
-- unrelated decorative object.
+Show the reference separately in the conversation/UI. Never composite it into the final bouquet image.
 
-The reference image should be shown **separately** to the user for before/after comparison, never composited into the bouquet image.
+## Batch / evaluation rule
 
-## Required delivery
+Even when testing many references, **image generation is one reference per call**.
 
-1. Show the original/reference image separately.
-2. Generate the clean bouquet image.
-3. Provide the florist build sheet separately as text/document.
+Never ask the image model to render a test matrix, contact sheet, before/after board, numbered gallery or evaluation infographic. Those may be assembled afterward outside the generator for review, but every underlying generated artifact must first be a clean standalone bouquet image.
 
-A prompt, palette, analysis, or build sheet without the actual bouquet image is incomplete.
+## Final check
 
-## Final test
-
-Reject and revise the result if:
-- it has become a generic bouquet with no relationship to the abstracted reference;
-- it copied literal or recognizable source content instead of visual language;
-- it contains anything a florist cannot realistically reproduce;
-- it uses too many flowers or too many species;
+Reject/revise if:
+- the bouquet is generic and only vaguely matches the source palette;
+- dominant/secondary/accent roles were flattened;
+- an important dark mass, contrast anchor or small accent was lost;
+- literal source content was copied instead of abstracted;
+- anything is physically unreproducible;
+- flower/species count is excessive for the visual effect;
 - it looks unnecessarily expensive;
-- the bouquet image contains explanations or reference images;
-- the image and recipe describe different bouquets.
-
-The target is not the most spectacular bouquet and not a floral copy of the original artwork.
+- image and build sheet disagree.
 
 The target is:
 
-> **the simplest real bouquet that carries the reference image's color, geometry, texture, and mood without reproducing its protected content.**
+> **the simplest real bouquet that carries the reference image's color hierarchy, geometry, texture and mood without reproducing its protected content.**
