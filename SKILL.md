@@ -1,177 +1,263 @@
 ---
 name: image-to-bouquet
-description: Turn one reference image into one striking, realistic, florist-reproducible bouquet. Preserve abstract color hierarchy, visual weight, contrast, rhythm, movement, negative space, and mood without preserving the source subject, local geometry, text, or recognizable imagery. Output one bouquet image plus one concise florist build sheet for that exact bouquet.
+description: Turn one reference image into one striking, florist-producible bouquet or floral piece. Preserve abstract palette, visual weight, contrast, rhythm, movement, negative space, material character, and mood without copying the source subject, local geometry, text, or recognizable imagery. Support fresh, hybrid, and art material modes. Output one final floral image plus one concise florist build sheet for that exact result.
 ---
 
 # Image to Bouquet
 
-Turn **one reference image into one striking, real, non-figurative florist bouquet**.
+Turn **one reference image into one visually faithful, designed, florist-producible floral work**.
 
-The source is for visual analysis only. The final image must read first as a professionally designed hand-tied bouquet, not as a picture made from flowers.
+The source is for analysis only. The final image must read first as a bouquet or floral piece, never as a picture rebuilt with flowers.
 
 A complete run has exactly two deliverables:
 
-1. one standalone bouquet image;
-2. one concise florist build sheet for that exact bouquet.
+1. one standalone final floral image;
+2. one concise florist build sheet for that exact result.
 
 Do not stop after image generation.
 
-## 1. Extract design language, not source content
+## 1. Resolve user preferences
+
+Support these optional controls. If the user does not specify them, choose automatically from the source.
+
+### Material mode
+- **auto** — choose the best strategy for the image
+- **fresh** — fresh flowers and fresh foliage; natural florist look
+- **hybrid** — fresh + preserved / dried / dyed materials when useful
+- **art** — visual fidelity first; preserved flowers, dyed flowers, dried botanicals, treated foliage, and high-quality artificial botanicals are allowed
+
+### Color fidelity
+- **natural** — natural flower colors take priority
+- **balanced** — balance realism and palette fidelity
+- **strict** — match the source palette closely, using treated/preserved/artificial materials when the selected material mode allows it
+
+### Design intensity
+- **safe** — elegant, commercial, restrained
+- **editorial** — stronger composition and material contrast
+- **bold** — high-impact, more directional and statement-like
+
+### Budget
+- **low / medium / high**
+
+### Wrapping
+- **minimal / commercial / editorial / luxury / color-led**
+
+Recommended auto behavior:
+- ordinary portrait / landscape / gift use → `fresh` or `hybrid`, `balanced`
+- stylized album cover / poster / extreme palette → `hybrid` or `art`, usually `strict`
+
+Explicit user choices always override auto selection.
+
+## 2. Extract design language, not source content
 
 Transfer only:
 
-- color hierarchy and rough proportions;
-- broad visual weight and macro color direction;
+- dominant / secondary / accent colors and rough proportions;
+- broad color placement and visual weight;
 - warm/cool, dark/light, muted/saturated contrast;
 - rhythm and directional energy;
 - negative-space character and depth;
-- high-level material feel and mood.
+- material feel and mood.
 
-Never transfer the source subject, silhouette, face/body geometry, object/building contours, local edges, typography, logos, graphics, or recognizable scene structure.
+Never transfer:
+
+- source subject or silhouette;
+- face/body geometry;
+- object/building contours or scene layout;
+- local edges and graphic linework;
+- text, logos, symbols, printed artwork, or recognizable source fragments.
 
 **Composition may survive; depiction may not.**
 
-After analysis, create a short internal floral brief with no source-specific nouns. When possible, generate the final bouquet from that text brief rather than using the source image as an edit or image-to-image reference.
+After analysis, create a short internal floral brief with no source-specific nouns. When possible, generate from that text brief instead of using the source image as an edit/image-to-image reference.
 
-## 2. Design for impact
+## 3. Lock the palette before choosing flowers
 
-Do not aim for merely safe or generally pretty. The bouquet should contain **one memorable botanical design move** while remaining realistic.
+Do not begin from flower availability. Begin from the visual target.
+
+Create 3–5 palette roles:
+
+- dominant color;
+- secondary color;
+- transition / bridge color;
+- accent color;
+- optional neutral / dark field.
+
+For each role, record internally:
+
+- hue family;
+- lightness;
+- saturation;
+- warm/cool bias;
+- approximate visual share;
+- where it should appear broadly.
+
+Then assign each role to **flowers, foliage, treated materials, wrapping, or ribbon**.
+
+The final bouquet should remain recognizably related to the source palette at thumbnail size. If the source is vivid, do not wash it into generic pastel floristry. If the source is restrained, do not over-saturate it.
+
+## 4. Choose materials by color + character
+
+A flower is not interchangeable just because its color matches.
+
+Choose materials using all of these:
+
+- color accuracy;
+- silhouette / petal geometry;
+- surface texture;
+- scale;
+- visual personality;
+- movement;
+- availability within the selected material mode.
+
+Examples of material character:
+
+- anemone → graphic, high-contrast focal
+- calla lily → sculptural, modern, directional
+- anthurium → glossy, bold, editorial
+- orchid → refined, cool, exotic
+- hydrangea → broad soft color mass
+- rose / garden rose → dense romantic focal/support
+- delphinium / snapdragon → vertical line and lift
+- preserved / dyed foliage → controlled unusual color fields
+
+Prefer **fewer, stronger material choices** over adding a new species for every hue.
+
+## 5. Treat wrapping as part of the design
+
+Wrapping is a first-class visual component, not an afterthought.
+
+Use it to carry:
+
+- large neutral or dark areas;
+- strong background color fields;
+- edge contrast;
+- direction and silhouette;
+- material contrast with the flowers.
+
+Match wrapping by hue, value, translucency, sheen, stiffness, and layering.
+
+For color-led or editorial references, wrapping may carry a substantial share of the source palette so the flowers do not need to become an overloaded color pile.
+
+Do not print the source image, text, logo, or recognizable artwork on the wrapping.
+
+## 6. Design for impact
+
+Do not aim for merely safe or generally pretty. The result should have **one memorable floral design move**.
 
 Choose one, occasionally two:
 
-- an off-center focal cluster with a clear counterweight;
-- one distinctive hero flower/form against smaller supporting textures;
-- a strong diagonal or upward movement created by real line flowers or natural stems;
-- concentrated warm/cool tension with a restrained transition bridge;
-- an intentional opening of negative space that gives the bouquet a recognizable silhouette.
-
-The impact must come from flowers, foliage, spacing, color, scale, and wrapping — never from props.
-
-### Floral hierarchy
+- off-center focal cluster with a clear counterweight;
+- one distinctive hero flower/form against smaller textures;
+- strong diagonal or upward botanical movement;
+- concentrated warm/cool tension with a narrow transition bridge;
+- bold wrapping-led composition;
+- strong scale or texture contrast;
+- intentional negative space that creates a memorable bouquet silhouette.
 
 Build around:
 
-- **focal** — one unmistakable first read;
-- **support** — balances the focal without mirroring it;
-- **bridge** — connects major color groups without washing them into one average color;
-- **line / movement** — real botanical stems only;
-- **depth** — foreground, middle, and upper/rear layers;
-- **negative space** — enough breathing room to keep the bouquet from becoming a flower wall.
-
-Use visible differences in flower size, height, texture, and density. Avoid distributing all important flowers evenly.
-
-### Color architecture
-
-Preserve dominant / secondary / accent roles. Do not turn every source color into equal flower coverage.
-
-When strong color zones meet:
-
-- keep their contrast readable;
-- overlap them selectively instead of making a hard border;
-- use a narrow bridge color/material rather than filling the whole bouquet with transition tones;
-- let a small echo of one side appear on the other only when it improves cohesion;
-- use wrapping or foliage for large neutral/dark masses instead of adding more flowers.
+- **focal** — unmistakable first read;
+- **support** — balances without mirroring;
+- **bridge** — connects color groups without averaging them;
+- **line / movement** — botanical stems only;
+- **depth** — foreground, middle, upper/rear;
+- **negative space** — enough breathing room to avoid a flower wall.
 
 If the result can be summarized as `one pile per color`, redesign it.
 
-### Avoid generic florist-template results
+## 7. Material rules by mode
 
-A technically correct bouquet can still fail if it feels interchangeable with a standard catalog arrangement.
+### Fresh
+Use fresh flowers, fresh foliage, ordinary wrapping, and natural/near-natural colors. Accept moderate palette compromise if needed.
 
-Before generation, ask:
+### Hybrid
+Mix fresh flowers with preserved, dried, dyed, or treated botanicals when they materially improve color accuracy or design character.
 
-> What is the one botanical decision that makes this bouquet memorable?
+### Art
+Prioritize visual fidelity and design. Preserved flowers, dyed flowers, dried botanicals, treated foliage, and high-quality artificial botanicals are allowed and must be disclosed in the build sheet.
 
-If there is no clear answer, strengthen the focal material, asymmetry, movement, scale contrast, texture contrast, or negative space — without adding more species or props.
+In all modes, the result must be **florist-producible**. Realistic does not mean every visible botanical must be an untreated fresh flower.
 
-## 3. Keep the material vocabulary disciplined
+Visible non-botanical content should normally be limited to wrapping and ribbon. Structural wire/tape must remain hidden.
 
-Default target unless the source clearly needs otherwise:
+By default, no visible wire frameworks, rods, pins, grids, lights, electronics, cards, tags, labels, printed source imagery, acrylic props, figurines, or unrelated conceptual inserts.
 
-- S–M bouquet, about 30–45 cm wide;
-- 3–5 botanical material families;
-- about 10–18 visually prominent stems / heads plus restrained filler;
-- 1 hero/focal family;
-- 1 supporting family;
-- 1 bridge or line family;
-- foliage/filler only when it improves structure;
-- ordinary florist wrapping and ribbon;
-- cost-conscious unless luxury is requested.
+## 8. Generate from a short florist brief
 
-Prefer fewer, stronger choices over many small ones. Do not add a new species just to match another hue.
+Use a fresh text-to-image path when available.
 
-Visible elements may be only real/disclosed botanical materials, florist wrapping, and ribbon. Structural wire/tape must stay hidden.
+The image-generation brief should contain only:
 
-By default, no visible wire frameworks, rods, pins, grids, lights, electronics, cards, tags, labels, printed source imagery, acrylic, crystals, figurines, or conceptual props.
-
-Colors must come from actual materials under normal daylight, not from strong colored lighting or glow effects.
-
-## 4. Generate from a short florist brief
-
-Use a fresh text-to-image generation path when available.
-
-The image-generation brief should describe only:
-
-- bouquet form;
+- bouquet / floral form;
+- selected material mode;
 - exact materials and approximate counts;
+- material type/treatment when relevant;
 - focal / support / bridge roles;
 - physical colors and macro color direction;
 - hero design move;
-- depth, movement, and negative space;
-- wrapping and ribbon;
-- neutral, color-faithful product photography.
+- depth, movement, negative space;
+- wrapping system and ribbon;
+- color-faithful product/editorial photography.
 
-A useful prompt shape is:
+Useful prompt shape:
 
-> Editorial-quality but physically realistic florist product photograph of one hand-tied bouquet; [form]; [hero move]; [materials + counts]; [color hierarchy and direction]; clear focal/support/bridge hierarchy; varied height and scale; visible front/mid/rear depth; intentional negative space; ordinary [wrapping]; neutral studio lighting; crisp natural flower morphology.
+> Editorial-quality but florist-producible [bouquet/floral piece]; material mode [fresh/hybrid/art]; [hero move]; [materials + counts + treatments]; [dominant/secondary/accent palette and direction]; clear focal/support/bridge hierarchy; varied scale and texture; visible front/mid/rear depth; intentional negative space; [wrapping system]; color-faithful lighting; crisp believable botanical detail.
 
-Keep the prompt positive and florist-specific. Do not repeat the source subject in a long negative list.
+Keep the prompt positive and florist-specific. Do not repeat source-specific forbidden nouns.
 
-## 5. Accept only a strong real bouquet
+## 9. Accept only a strong result
 
 Reject and regenerate if any of these are true:
 
-- **Depiction failure:** the flowers collectively form a recognizable face, body, object, symbol, picture, scene, logo, or source-specific shape.
-- **Prop failure:** visible non-floral devices, cards, text, graphics, wire frameworks, lights, or conceptual inserts appear.
-- **Design failure:** no clear focal hierarchy, no memorable botanical decision, flat depth, uniform flower heads, mechanical symmetry, or obvious color piles.
-- **Generic failure:** the bouquet is pleasant but could represent almost any reference because its palette, tension, movement, and focal choice are too generic.
-- **Reality failure:** impossible flower morphology/color, implausible wrapping/gravity, excessive species/count, or visible materials that a florist cannot reproduce.
-- **Lighting failure:** the palette depends on colored illumination rather than actual flower/wrapping colors.
+- **Color failure:** dominant/secondary/accent relationships are noticeably weaker or shifted from the source without a material-mode reason.
+- **Material failure:** flower/material character does not fit the source mood, or the chosen mode is ignored.
+- **Wrapping failure:** wrapping feels generic, mismatched, or disconnected from the palette/composition.
+- **Design failure:** no clear focal hierarchy, no memorable design move, flat depth, mechanical symmetry, or obvious color piles.
+- **Generic failure:** pleasant but interchangeable with a standard catalog bouquet.
+- **Depiction failure:** flowers collectively form a recognizable face, body, object, logo, picture, scene, or source-specific shape.
+- **Prop failure:** visible unrelated devices, cards, text, source graphics, wire frameworks, or conceptual inserts appear.
+- **Reality failure:** impossible construction, implausible gravity, excessive species/count, or materials a florist could not reasonably reproduce/source.
+- **Lighting failure:** palette depends on colored illumination instead of the actual materials.
 
-The desired balance is:
+Desired balance:
 
-> **recognizable palette and atmosphere + memorable floral design + real-world reproducibility + zero literal source content.**
+> **recognizable palette + deliberate material selection + designed wrapping + memorable floral composition + real-world reproducibility + zero literal source content**
 
-## 6. Florist Build Sheet
+## 10. Florist Build Sheet
 
-After the final accepted image, output this concise sheet:
+After the final accepted image, output:
 
 ```markdown
 # Florist Build Sheet
 
 ## Design
-- Size: S / M (approx. width × height)
-- Shape: ...
-- Cost level: low / medium / high
+- Size: S / M / L (approx. width × height)
+- Form: bouquet / floral piece
+- Material mode: fresh / hybrid / art
+- Color fidelity: natural / balanced / strict
+- Design intensity: safe / editorial / bold
+- Budget: low / medium / high
 - Core visual idea: ...
 - Hero move: ...
 - Focal / support / bridge: ...
 
-## Flowers & foliage
-| Material | Color / treatment | Qty | Role |
-| --- | --- | ---: | --- |
-| ... | ... | ... | focal / support / bridge / line / filler / foliage |
+## Materials
+| Material | Type | Color / treatment | Qty | Role |
+| --- | --- | --- | ---: | --- |
+| ... | fresh / preserved / dried / dyed / artificial | ... | ... | focal / support / bridge / line / filler / foliage |
 
 ## Wrapping
 - Outer wrap: ...
 - Inner layer: ...
 - Ribbon: ...
+- Visual role: neutral field / color field / bridge / contrast / silhouette
 
 ## Assembly
-1. Establish the focal and depth.
-2. Add support with unequal height/scale.
-3. Add bridge and botanical movement without flattening the color contrast.
-4. Preserve negative space, then wrap and tie.
+1. Establish focal, movement, and depth.
+2. Add support with unequal scale/height.
+3. Add the bridge without flattening palette contrast.
+4. Build the wrapping as part of the composition, preserve negative space, then tie.
 
 ## Substitutions
 - ... → ...
@@ -181,4 +267,4 @@ After the final accepted image, output this concise sheet:
 - ...
 ```
 
-The build sheet must describe the final image exactly and must not introduce any forbidden visible element.
+The build sheet must match the final image exactly and disclose preserved/dyed/artificial materials when used.
