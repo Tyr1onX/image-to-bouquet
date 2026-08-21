@@ -7,7 +7,7 @@ description: Turn one reference image into one realistic, cost-conscious, floris
 
 Turn **one reference image into one real bouquet**.
 
-The input may be a personal photo, landscape, architecture, portrait, illustration, poster, album art, film still, or any other image. Treat it as a source of **visual language**, not literal content to copy.
+The input may be a personal photo, landscape, architecture, portrait, illustration, poster, album art, film still, or any other image. Treat it as a source of **visual language**, never as literal content to copy.
 
 ## Required output
 
@@ -16,7 +16,7 @@ A complete run produces exactly two deliverables:
 1. **Bouquet image** — one clean, high-quality florist product image.
 2. **Florist build sheet** — one short Markdown document explaining how to physically reproduce that same bouquet.
 
-The reference image is the input and may be shown separately for comparison, but it is not part of the generated bouquet image.
+The reference image is analysis input only. It may be shown separately by the host for comparison, but it must never appear inside the generated bouquet image.
 
 Do not finish with only analysis, a palette, a prompt, or a build sheet.
 
@@ -29,7 +29,7 @@ Extract:
 3. **Texture** — soft, rough, glossy, matte, translucent, metallic, natural, geometric, etc.
 4. **Mood** — calm, playful, cold, warm, dreamy, restrained, dramatic, nostalgic, futuristic, etc.
 
-Do not reconstruct the source scene, characters, faces, typography, logos, buildings, props, or signature objects.
+Do not reconstruct the source scene, characters, faces, typography, logos, buildings, props, signature objects, or any other recognizable source content.
 
 ### Safe abstraction
 
@@ -38,6 +38,31 @@ For third-party artwork or branded media, first reduce the image internally to a
 > deep navy field + concentrated lime-green mass + small warm-yellow accents + energetic asymmetric composition
 
 Design from that abstraction only. Do not ask the image model to recreate, trace, extend, restage, or closely imitate the protected work.
+
+### Source-content firewall — absolute rule
+
+The source image is **analysis-only**. The final bouquet may preserve abstract visual relationships, but it must contain **zero literal or recognizable source-image content**.
+
+Never reproduce, print, redraw, collage, embed, or restage any of the following inside the bouquet, wrapping, ribbon, background, or accessories:
+
+- faces or facial parts — eyes, lips, noses, ears, skin, hair, facial outlines, portraits;
+- human bodies, silhouettes, hands, clothing shapes, poses, or recognizable anatomy;
+- text, typography, album titles, captions, signatures, logos, labels, watermarks, or symbols;
+- photographs, screenshots, source-image crops, printed portraits, printed cover art, or image fragments;
+- recognizable characters, buildings, products, props, objects, scenery, or signature motifs from the source;
+- line art, diagrams, circuit marks, graphic overlays, borders, UI elements, or decorative patterns copied from the source.
+
+This rule applies even when the copied element would be physically printable or technically reproducible. **Physical reproducibility does not make literal source copying acceptable.**
+
+For a portrait, a skin tone may become a peach, champagne, blush, beige, or warm neutral floral color, but no facial feature, face shape, body part, or portrait image may survive.
+
+For an album cover, poster, or film still, the final bouquet must not contain any crop, reprint, portrait, title, logo, artwork fragment, or recognizable object from that source.
+
+For a landscape or architecture image, the final bouquet must not reconstruct the mountain, building, skyline, road, window, tree silhouette, or other recognizable scene object. Translate only their abstract color zones, balance, direction, density, and mood.
+
+**No source-image pixels or printed source imagery should appear in the final bouquet image.**
+
+If the output contains any recognizable literal source element, reject it immediately and regenerate from the abstract floral recipe.
 
 ### Graphic motifs are never bouquet objects
 
@@ -117,7 +142,7 @@ Unless the user explicitly asks for an installation-style or mixed-media bouquet
 - black rods, sticks, pins, or line frameworks;
 - metal frames or geometric supports;
 - acrylic sheets, plastic shapes, mirrors, crystals, resin pieces, or glass-like props;
-- printed graphics, text cards, logos, source-image fragments, or symbolic inserts;
+- printed graphics, text cards, logos, source-image fragments, printed portraits, or symbolic inserts;
 - figurines, planets, portals, lights, electronics, floating objects, or CGI-like effects;
 - abstract sculptural elements whose material cannot be clearly named and purchased by a florist;
 - impossible flowers or invented botanical species.
@@ -133,6 +158,8 @@ If the image contains a visible object that cannot be clearly named, sourced, qu
 A useful test is:
 
 > If a florist would point at a visible object and ask “what exactly is this, and where do I buy it?”, the generation has failed unless the build sheet already has a realistic answer.
+
+The reverse is also important: even if an element **can** be purchased or printed, it is still forbidden if it literally repeats source-image content.
 
 ## 4. Reality and cost are hard constraints
 
@@ -154,7 +181,7 @@ If a source color is difficult in fresh flowers, prefer:
 3. florist-usable artificial botanical material, disclosed in the build sheet;
 4. the nearest realistic flower color.
 
-Do not solve a color problem by inventing a non-floral prop.
+Do not solve a color problem by inventing a non-floral prop or by printing the source image onto wrapping.
 
 ## 5. Lock the bouquet recipe before generating the image
 
@@ -174,6 +201,20 @@ The recipe is authoritative. If the generated image does not match it, regenerat
 
 No visible object outside the locked inventory may be accepted simply because it looks visually interesting.
 
+### Generation isolation rule
+
+After the visual analysis is complete, the image-generation step must be driven by the **locked floral recipe**, not by literal source content.
+
+When instructing the image generator:
+
+- describe the bouquet as a new standalone florist product;
+- describe flowers, foliage, wrapping, ribbon, color zoning, scale, silhouette, and lighting;
+- do **not** ask it to preserve, recreate, include, print, or restage a face, person, album cover, text, logo, source object, source scene, or graphic motif;
+- do **not** use the reference image as an edit target, collage layer, texture, print, or compositing source;
+- if the host automatically exposes the reference image to the image model, explicitly state that it is **analysis-only** and that no recognizable source content may appear in the output.
+
+The image should be generated **from scratch as a bouquet**, using only the abstracted recipe.
+
 ## 6. Generate the bouquet image
 
 Use the host's **native image-generation tool**.
@@ -189,7 +230,11 @@ The final image must:
 - preserve the source's color hierarchy, spatial color zoning, and geometric character;
 - use a simple studio or natural background;
 - contain no text, palette, checklist, reference inset, watermark, moodboard, or infographic;
+- contain no face, facial feature, human body, portrait, skin image, clothing image, or human silhouette;
+- contain no printed source image, source-image crop, album-cover fragment, screenshot, logo, title, or recognizable source object;
 - contain no visible decorative wire, abstract framework, geometric insert, or other non-floral conceptual object by default.
+
+Plain wrapping paper may use solid colors, gradients, translucency, or ordinary non-referential texture. It must never carry a recognizable reproduction of the source image.
 
 ### Image provenance and quality
 
@@ -198,10 +243,12 @@ The final bouquet image must be a direct standalone output from the native image
 Never use as the final image:
 
 - a crop from a collage/contact sheet/infographic/comparison board/screenshot;
+- a crop or fragment of the source image;
 - an enlarged thumbnail;
 - an upscaled low-resolution crop;
 - a recompressed preview when the original direct generation exists;
-- a Python/graphics reconstruction used instead of native image generation.
+- a Python/graphics reconstruction used instead of native image generation;
+- a composite in which the source image is printed, pasted, masked, projected, or blended into the bouquet.
 
 Cropping or assembling images is allowed only for secondary review sheets after the standalone bouquet image already exists.
 
@@ -251,7 +298,7 @@ Only list materials actually visible or required in the generated bouquet.
 
 The document and image must describe **the same bouquet**.
 
-Do not use the build sheet to retroactively justify an accidental abstract object. If an object violates the florist-real rules, remove it from the image instead.
+Do not use the build sheet to retroactively justify an accidental abstract object or literal source-image reproduction. If an object violates the florist-real or source-content-firewall rules, remove it from the image instead.
 
 ## 8. Final check
 
@@ -262,6 +309,9 @@ Reject and revise if any of these are true:
 - large color zones were mixed together even though their spatial separation is important to the source;
 - important dark mass, contrast, transition, or accent color disappeared;
 - literal source content or graphic motifs were copied instead of abstracted;
+- any face, facial feature, portrait, human anatomy, body silhouette, clothing image, or recognizable person appears;
+- any text, title, logo, signature, source-image fragment, printed cover art, screenshot, recognizable source object, or recognizable source scene appears;
+- the wrapping or ribbon contains printed imagery derived from the source;
 - visible wires, black rods, line frameworks, metal structures, acrylic shapes, geometric inserts, or conceptual props appeared without an explicit user request;
 - a visible element is not a real florist-usable material or cannot be named and sourced in the build sheet;
 - a flower uses an implausible color or impossible morphology without a disclosed real-world treatment/material;
@@ -272,9 +322,30 @@ Reject and revise if any of these are true:
 - the image and build sheet disagree;
 - the delivered image is not a crisp direct native generation.
 
+### Mandatory literal-copy audit before delivery
+
+Compare the generated bouquet against the source one last time.
+
+Ask:
+
+1. Does any part of the output look like a cropped, printed, redrawn, traced, or reconstructed piece of the source?
+2. Can I recognize a face, person, object, building, character, logo, word, symbol, or scene from the source?
+3. Does the wrapping contain an image rather than just abstract color/material treatment?
+4. Is any source-specific motif surviving as a literal object instead of a floral decision?
+
+If **yes** to any question, reject the image and regenerate from the abstract floral recipe.
+
+Only these source relationships may survive:
+
+- color hierarchy and rough proportions;
+- spatial color zoning;
+- bouquet-scale geometry and balance;
+- texture translated into real floral/material texture;
+- overall mood.
+
 ### Mandatory object audit before delivery
 
-Before accepting the image, inspect every conspicuous visible object and classify it as one of:
+Inspect every conspicuous visible object and classify it as one of:
 
 - flower;
 - foliage / botanical branch;
@@ -284,12 +355,20 @@ Before accepting the image, inspect every conspicuous visible object and classif
 
 If a conspicuous object cannot be placed in one of those categories, reject the image and regenerate or edit it.
 
+Passing the object audit does **not** override the literal-copy audit. A printed portrait on wrapping is still forbidden even though the paper itself is a valid florist material.
+
 ## Batch / golden-sample testing
 
 For multiple references, still generate **one bouquet per native image call**. Never ask the image model for a test matrix, before/after board, contact sheet, or multi-case infographic. Comparison sheets may be assembled afterward only for review.
 
-Golden samples should intentionally include inputs with graphic overlays, line art, strong color zoning, and difficult colors. A successful result must preserve their visual identity **without importing their graphic objects into the bouquet**.
+Golden samples should intentionally include portraits, album covers, posters, graphic overlays, line art, strong color zoning, and difficult colors.
+
+A successful portrait test preserves palette, light/dark balance, spatial emphasis, and mood **without reproducing the person or any facial/body feature**.
+
+A successful album-cover test preserves color hierarchy and composition **without reproducing cover art, portraits, text, logos, graphics, or printed source fragments**.
+
+A successful result must preserve visual identity **without importing literal source content into the bouquet**.
 
 The target is:
 
-> **the simplest real bouquet that clearly carries the reference image's color hierarchy, spatial color relationships, geometry, texture, and mood — using only florist-real visible materials — plus a short build sheet that lets a florist reproduce it.**
+> **the simplest real bouquet that clearly carries only the reference image's color hierarchy, spatial color relationships, geometry, texture, and mood — using florist-real visible materials, with zero literal source-image content — plus a short build sheet that lets a florist reproduce it.**
