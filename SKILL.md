@@ -1,286 +1,348 @@
 ---
 name: image-to-bouquet
-description: Turn one reference image into one realistic, cost-conscious, florist-reproducible bouquet. Use the source only to extract abstract color hierarchy, coarse spatial color relationships, material feel, and mood. Never preserve or recreate the source subject, silhouette, local contours, or recognizable imagery. A complete run must produce exactly two deliverables: one clean standalone bouquet image and one concise florist build sheet for that same bouquet.
+description: Turn one reference image into one realistic, florist-reproducible bouquet. Preserve the source's color hierarchy, broad visual weight, contrast, rhythm, and mood without preserving its subject, silhouette, local contours, text, or recognizable imagery. The result must be a designed but non-figurative hand-tied bouquet plus a concise florist build sheet for that exact bouquet.
 ---
 
 # Image to Bouquet
 
-Turn **one reference image into one ordinary, real, non-figurative florist bouquet**.
+Turn **one reference image into one designed, real, non-figurative florist bouquet**.
 
-The reference may be a portrait, landscape, album cover, poster, architecture image, illustration, or any other picture. It is an **analysis source**, not a visual template for the generated image.
+The reference is an **analysis source**, not a template for the bouquet image.
 
-The final result must always read simply as:
+The final result must read simply as a well-designed hand-tied bouquet. It must not depict, trace, imitate, print, or reconstruct what the source image shows.
 
-> a normal hand-tied florist bouquet
+A complete run has exactly two deliverables:
 
-It must never read as a floral portrait, floral sculpture, floral relief, mosaic, picture, symbol, character, object, building, landscape reconstruction, or themed prop.
+1. one standalone bouquet image;
+2. one concise florist build sheet for that exact bouquet.
 
-## Required output
-
-A complete run produces exactly two deliverables:
-
-1. **Bouquet image** — one standalone, crisp, realistic florist product photograph.
-2. **Florist build sheet** — one short Markdown document explaining how to reproduce that exact bouquet.
-
-The image-generation call is not the end of the task. Do not finish until both deliverables exist.
+Do not stop after image generation. The task is incomplete until both exist.
 
 ---
 
-## 1. Analyze the source, then detach from it
+## 1. Separate visual design from source subject
 
-Read only these abstract properties:
+Analyze the source in two layers.
 
-1. **Color hierarchy** — dominant / secondary / accent colors and rough proportions.
-2. **Coarse color zoning** — only broad relations such as left cooler / right warmer, center lighter / edge darker, top muted / bottom saturated.
-3. **Overall density and direction** — airy / dense, calm / energetic, vertically biased / horizontally broad / balanced.
-4. **Material feel and mood** — soft / crisp / matte / glossy / restrained / dramatic / nostalgic / futuristic, translated only into ordinary florist materials.
+### Layer A — transferable visual relationships
 
-### Never extract subject geometry
+These may influence the bouquet:
 
-Do **not** preserve or transfer:
+- **color hierarchy** — dominant / secondary / accent colors and rough proportions;
+- **macro color placement** — broad relations such as left cooler / right warmer, center lighter / edge darker, upper area quieter / lower area denser;
+- **visual weight** — where the image feels heavy, light, open, or concentrated at a coarse level;
+- **contrast** — warm/cool, dark/light, muted/saturated, soft/sharp;
+- **rhythm** — calm repetition, scattered accents, gradual transition, clustered energy;
+- **directional energy** — broadly vertical, horizontal, diagonal, upward, spreading, or balanced;
+- **negative-space character** — compact, airy, open, restrained;
+- **material feel and mood** — soft, crisp, matte, glossy, quiet, dramatic, nostalgic, futuristic, romantic, restrained.
+
+### Layer B — non-transferable source content
+
+These must not survive:
 
 - subject silhouette;
-- face shape or facial layout;
-- body pose or anatomy;
-- object contour;
-- building outline;
-- mountain / skyline / road / window shape;
-- local edges, internal linework, feature positions, or recognizable scene layout;
-- any source-specific shape that could let a viewer identify what the original picture depicted.
+- face shape, facial layout, anatomy, body pose;
+- object contour or recognizable object arrangement;
+- building, skyline, mountain, road, window, character, product, or scene shape;
+- local edges, internal linework, graphic overlays, symbols, typography, logos;
+- texture maps such as skin, fabric, drawing strokes, screenshots, printed artwork;
+- any source-specific geometry fine enough to reveal what the original image depicted.
 
-Source **geometry is not a design target**. Only coarse, non-semantic balance may survive.
+**Composition may survive; depiction may not.**
 
-For portraits specifically, ignore the geometry of the person completely. A portrait can contribute palette, broad light/dark balance, and mood only.
+A portrait may contribute a cool/warm split, value balance, focal intensity, and mood, but never the geometry of a face or body.
 
-For album covers, posters, and illustrations, ignore all typography, line art, symbols, graphic motifs, and recognizable artwork. They may influence broad color zoning or mood only.
-
-### Texture is not a texture map
-
-Do not map skin texture, fabric texture, drawing marks, brush strokes, image noise, or source surface details onto flowers or wrapping.
-
-Translate texture only at a very high level, for example:
-
-- soft → soft-petaled flowers / matte wrap;
-- crisp → cleaner flower spacing / firmer wrap edges;
-- glossy → a naturally glossy botanical such as anthurium or subtle cellophane;
-- airy → more negative space and lighter filler.
+An album cover may contribute palette, broad weight, contrast, and rhythm, but never cover art, line graphics, typography, or subject shape.
 
 ---
 
-## 2. Create a sanitized floral brief
+## 2. Build an abstract composition map, not a picture map
 
-After analysis, create a short internal **sanitized floral brief** and stop reasoning from the source image itself.
+Do not reduce the reference to colors alone. That creates dull color piles.
+
+Instead, make a coarse internal composition map using only florist-safe design variables:
+
+- dominant color mass;
+- secondary color mass;
+- accent color;
+- one primary visual-weight zone;
+- one supporting visual-weight zone;
+- one transition / bridge zone;
+- broad direction of movement;
+- desired amount of negative space;
+- desired depth and density.
+
+Keep this map coarse. Do not encode facial features, object edges, or source contours.
+
+### Break literal correspondence
+
+The bouquet must not preserve one-to-one positions from the source.
+
+After extracting the macro relationships:
+
+- simplify small source regions into larger color families;
+- merge nearby details;
+- move focal material slightly when needed for floral balance;
+- soften hard image boundaries into overlapping floral transitions;
+- convert exact source edges into ordinary florist spacing and stem movement.
+
+The goal is to preserve **visual logic**, not spatial tracing.
+
+---
+
+## 3. Create a sanitized floral brief
+
+After source analysis, stop using source semantics and create a short internal floral brief.
 
 The brief may contain only:
 
-- 3–5 color groups with rough proportions;
-- broad color zones such as left / right / center / edge;
-- one ordinary florist bouquet form;
-- density / airiness;
-- flower and foliage names;
+- 3–5 color families and rough proportions;
+- macro color placement;
+- focal / support / bridge roles;
+- broad movement and negative space;
+- bouquet form;
+- botanical materials and approximate counts;
 - wrapping and ribbon;
 - neutral product-photo lighting;
 - cost level.
 
-The brief must **not contain source semantics** such as the identity of a person, album, character, object, building, landscape, logo, title, facial feature, or other depicted subject.
+Do not carry names of people, albums, characters, buildings, products, facial features, objects, scenes, titles, logos, or source motifs into the image-generation brief.
 
-Do not carry source nouns into the image-generation prompt.
+### Bouquet-form whitelist
 
-### Bouquet form whitelist
-
-Choose only an ordinary florist form:
+Choose one ordinary florist form:
 
 - natural round hand-tied bouquet;
 - loose garden-style hand-tied bouquet;
 - gently asymmetric hand-tied bouquet;
 - lightly vertical hand-tied bouquet.
 
-The form must be selected for florist plausibility and broad visual balance, **not to trace the source subject**.
-
-Do not create pictorial or representational arrangements.
+The form is chosen for floral design quality, not to trace the source subject.
 
 ---
 
-## 3. Lock a real florist recipe
+## 4. Design the bouquet — do not merely stack colors
 
-Before image generation, lock:
+A successful result needs **floral composition**, not just color correspondence.
 
-- size: normally S–M, around 30–40 cm wide;
-- bouquet form from the whitelist above;
-- 3–5 flower / foliage material types total when possible;
-- roughly 7–12 visible main flower heads / stems;
-- focal / support / filler roles;
-- wrapping paper and ribbon;
-- material colors that carry the source palette in normal daylight;
-- cost level;
-- cheaper substitutions;
-- a visible-material inventory.
+### Required design architecture
 
-### Default visible-material inventory
+Unless the reference strongly calls for another florist-safe solution, design with these roles:
 
-The finished bouquet may visibly contain only:
+1. **Primary focal cluster** — the strongest 20–30% of visual weight. It should feel intentional, not like the center of a color wall.
+2. **Supporting cluster** — a secondary mass that balances the focal cluster without mirroring it mechanically.
+3. **Transition bridge** — flowers or foliage that visually connect major color zones.
+4. **Directional line** — created only by real line flowers or natural botanical stems, never wire, rods, pins, frames, or artificial geometry.
+5. **Negative space** — enough breathing room to separate layers and keep the bouquet from becoming a flat floral carpet.
+6. **Depth layers** — foreground, middle, and rear/upper material should be visibly different in height or overlap.
 
-- real fresh flowers;
-- real foliage or botanical branches;
-- real dried / preserved botanicals;
-- clearly disclosed dyed botanicals when necessary;
-- florist-usable artificial botanicals only when necessary and disclosed;
+### Color-transition rule
+
+Do not make a bouquet that is simply:
+
+> blue pile | beige separator | red pile
+
+When two strong color zones meet:
+
+- overlap them softly rather than creating a hard vertical border;
+- use one or two bridge colors or shared materials across the boundary;
+- let a small amount of the left-side color echo into the right side and vice versa when it improves cohesion;
+- preserve the dominant direction without making the bouquet look cut in half;
+- use wrapping or foliage to carry large dark/neutral masses instead of adding more flower heads.
+
+The bouquet should feel **integrated but still clearly color-directed**.
+
+### Material hierarchy
+
+Prefer a small, intentional material vocabulary:
+
+- 1 hero flower family or focal material;
+- 1 supporting flower family;
+- 1 line / movement material when useful;
+- 1 filler or foliage material when useful;
+- optional 1 specialty material only if it materially improves the design.
+
+Avoid adding a new species for every hue.
+
+### Anti-pile rules
+
+Reject the design before generation if the recipe can be described mainly as:
+
+- one dense block per color;
+- equal-sized flower heads distributed uniformly;
+- a flat wall of blooms with no depth;
+- a centered separator strip between two color halves;
+- many flower species used only to increase color coverage;
+- dozens of repeated blooms with no focal hierarchy;
+- perfectly mirrored left/right masses unless the user explicitly requests formal symmetry.
+
+---
+
+## 5. Lock a physically realistic florist recipe
+
+Before image generation, lock the recipe.
+
+Default target:
+
+- S–M bouquet, roughly 30–40 cm wide;
+- 3–5 botanical material types total;
+- roughly 8–14 visually prominent stems / main heads, plus restrained filler;
+- 1 clear focal hierarchy;
+- 2–3 depth levels;
+- visible negative space;
+- ordinary florist wrapping and ribbon;
+- colors that remain valid in normal daylight;
+- cost-conscious unless the user asks for luxury.
+
+The generated bouquet must visually respect these counts. If the image obviously shows dozens of main heads despite a small recipe, reject it.
+
+### Visible-material whitelist
+
+Visible content may contain only:
+
+- fresh flowers;
+- real foliage or natural botanical branches;
+- disclosed dried / preserved / dyed botanical material when needed;
+- disclosed florist-usable artificial botanical material only when necessary;
 - ordinary florist wrapping paper / tissue / mesh / cellophane;
 - ordinary ribbon or tying material.
 
-Structural wire or tape may be used internally but should not become visible decoration.
+### Structural materials are hidden only
 
-### Not part of the default bouquet
+Floral wire, tape, cable ties, pins, grids, cages, frames, rods, and mechanics may never be visible decorative language.
 
-Do not add decorative props just because they are physically possible. By default the bouquet contains no:
+Do not use wire or pins to draw lines, connect points, imitate diagrams, create a network, or build a geometric skeleton.
 
-- visible wire frameworks, rods, frames, acrylic or plastic inserts;
-- lamps, LEDs, neon tubes, light sticks, bulbs, electronics, or active light sources;
-- cards, tags, labels, tickets, printed slips, message cards, or branded inserts;
-- source-image prints, photos, logos, words, symbols, or artwork fragments;
-- figurines, models, crystals, mirrors, sculptural props, or CGI-like effects.
+If the build sheet contains a visible wire frame, geometric wire structure, bead pin system, rod framework, or similar decorative mechanic, the design is invalid.
 
-Wrapping should look like ordinary flexible florist wrapping, not a poster, printed artwork, rigid panel, or display board.
+Natural line flowers and branches are allowed only when they look botanical and organic. They must not form a deliberate diagram or polygon network.
+
+### No decorative props by default
+
+Do not add:
+
+- lamps, LEDs, neon tubes, bulbs, light sticks, electronics;
+- cards, tags, labels, tickets, printed slips, branded inserts;
+- source prints, photos, logos, text, symbols, artwork fragments;
+- acrylic, plastic inserts, mirrors, crystals, figurines, sculptural props;
+- any non-floral object whose main purpose is to make the bouquet look more conceptual or futuristic.
+
+Wrapping must look like flexible florist wrapping, not a poster, printed artwork, rigid panel, or display board.
 
 ---
 
-## 4. Generate from the sanitized recipe, not from the source image
+## 6. Generate from the floral brief, not the source image
 
-This is the most important generation rule.
+After the floral brief and recipe are locked:
 
-### Reference detachment
+- generate a **fresh bouquet from text**;
+- use text-to-image rather than image editing / image-to-image when the host permits it;
+- do not pass the source file, source crop, image ID, image path, or source pixels as a generation reference when a text-only path exists;
+- do not composite, trace, project, texture, mask, or transform the source image.
 
-After the sanitized floral brief and recipe are locked:
-
-- generate a **new bouquet from text**;
-- do not use the source image as an edit target;
-- do not pass the source file, source crop, source image ID, or source image path as a generation reference when the tool allows a text-only call;
-- do not composite, mask, project, texture, trace, restage, or transform the source image;
-- use a fresh text-to-image generation path rather than image editing / image-to-image when possible.
-
-The source is for the agent's analysis step only. The image model should receive the **sanitized floral recipe**, not the original subject description.
+The image model should receive the floral design, not the source subject.
 
 ### Prompt hygiene
 
-Keep the image-generation brief short and positive.
+The generation brief should be short, positive, and florist-specific.
 
-Describe only:
+Describe:
 
-- one ordinary hand-tied florist bouquet;
-- exact flowers / foliage and approximate counts;
-- physical flower colors;
-- broad color zoning;
-- natural spacing and bouquet form;
-- ordinary wrapping and ribbon;
-- neutral, color-faithful studio photography.
+- bouquet form;
+- exact botanical materials and approximate counts;
+- focal / support / bridge roles;
+- physical colors;
+- broad color direction;
+- depth and negative space;
+- wrapping and ribbon;
+- neutral, color-faithful product photography.
 
-Do **not** feed the image model a long list of source-specific negative concepts. In particular, do not repeat source semantic nouns merely to say they are forbidden. The sanitization step should remove those concepts before generation.
-
-A good generation brief should still make complete sense if the source image is hidden.
-
-### Non-figurative composition rule
-
-Flowers are arranged for **floral balance only**.
-
-They must not be positioned to collectively depict a recognizable picture, contour, relief, symbol, letter, object, scene, or living form.
-
-Do not create a continuous petal surface, flower mosaic, pixel-like field, or sculpted floral mass whose purpose is to reproduce an image.
+Do not fill the generation brief with a long list of source-specific forbidden nouns. Remove source semantics before generation instead.
 
 ---
 
-## 5. Product-photo rules
+## 7. Product-photo rules
 
 The final image must:
 
-- show one finished bouquet only;
-- look like a normal florist product photograph;
-- use realistic flower scale, stem count, spacing, wrapping, and gravity;
-- use a simple neutral or natural background;
-- use neutral or gently warm/cool **off-camera** lighting;
+- show one finished hand-tied bouquet only;
+- look like a real florist product photograph;
+- show believable stem count, flower scale, spacing, gravity, and wrapping;
+- preserve visible depth rather than a flat floral surface;
+- use neutral or gently warm/cool off-camera lighting;
 - keep actual flower and wrapping colors readable;
 - derive the palette from physical materials, not colored light or post-processing;
-- contain no visible light source;
-- contain no text or printed matter;
-- remain crisp with clear petal, foliage, and wrapping detail.
+- contain no visible light source, printed matter, decorative hardware, or conceptual prop;
+- remain crisp enough to inspect petals, foliage, wrapping, and material count.
 
-A useful color test:
-
-> If the bouquet were viewed in ordinary daylight, its main color relationships should still be present.
+If ordinary daylight would destroy the apparent palette, the design is invalid.
 
 ---
 
-## 6. Mandatory acceptance audits
+## 8. Mandatory acceptance audits
 
-Do not accept the first attractive image automatically.
+Do not accept the first attractive generation automatically.
 
-### A. Ordinary-bouquet test
+### A. Ordinary bouquet test
 
-Hide the reference mentally and inspect the output.
+Hide the reference and ask:
 
-Ask:
+> Does this look first and only like a professionally designed hand-tied bouquet?
 
-> Would a florist describe this simply as a hand-tied bouquet, or would they say it is shaped like / depicting something?
-
-If it depicts **anything**, reject it.
+If it looks like a portrait, sculpture, picture, diagram, prop, stage object, or floral installation, reject it.
 
 ### B. Semantic-shape audit
 
-Reject if the overall flower arrangement forms or strongly suggests:
+Reject if the whole composition forms or strongly suggests any recognizable living form, object, symbol, letter, logo, scene, building, picture, relief, mosaic, or source-specific contour.
 
-- a recognizable living form;
-- a recognizable object;
-- a symbol, letter, logo, picture, scene, building, or source-specific contour;
-- a portrait-like or relief-like central surface;
-- any image made out of flowers.
+This applies to the **whole arrangement**, even if every individual element is a real flower.
 
-This audit applies to the **whole composition**, not just individual materials. A composition can fail even if every individual element is a real flower.
+### C. Floral-design audit
 
-### C. Source-copy audit
+Reject if any of these are true:
 
-Reject if any recognizable source content survives as:
+- the design is mainly large blocks of different colors placed side by side;
+- there is no clear focal / support hierarchy;
+- major color zones have no transition bridge;
+- the bouquet is a flat, dense wall with little depth or breathing room;
+- flower-head sizes and heights are too uniform;
+- there is no deliberate rhythm, movement, or negative space;
+- too many species or blooms are used for the visual effect achieved;
+- the arrangement feels mechanically symmetrical or grid-like without a good floral reason;
+- the result looks like colors were merely filled into regions instead of composed as a bouquet.
 
-- printed imagery;
-- a reconstructed shape;
-- a traced contour;
-- a graphic motif;
-- a scene fragment;
-- a source-specific object or symbol.
+### D. Source-copy audit
 
-Only abstract palette, coarse color zoning, broad density, and mood may survive.
+Reject if recognizable source content survives as a print, reconstructed shape, traced contour, graphic motif, scene fragment, object, or symbol.
 
-### D. Florist-material audit
+Only abstract palette, broad visual weight, macro color placement, contrast, rhythm, direction, negative-space character, and mood may survive.
 
-Every conspicuous visible item must be explainable as flower, foliage, disclosed botanical material, wrapping, or ribbon.
+### E. Florist-material audit
 
-### E. Lighting / paper audit
+Every conspicuous visible element must be flower, foliage, disclosed botanical material, wrapping, or ribbon.
 
-Reject if:
+Reject visible wire, rods, pins, line frameworks, geometric skeletons, lamps, cards, tags, acrylic, or other props.
 
-- colored light is carrying the palette;
-- any light fixture is visible;
-- any unnecessary tag / card / label / paper insert appears;
-- wrapping looks printed, rigid, sculptural, or implausible.
-
-### F. Reality audit
+### F. Reality and quantity audit
 
 Reject if:
 
-- the flowers have impossible morphology or color without a real disclosed treatment;
-- stems / flower heads / wrapping are physically implausible;
+- flowers have impossible morphology or color without a disclosed real treatment;
+- wrapping or stems behave implausibly;
+- the visible flower count grossly exceeds the locked recipe;
 - the bouquet is unnecessarily huge, complex, or expensive;
-- the result reads as installation art or editorial prop instead of a sellable florist bouquet.
+- the result reads as editorial spectacle instead of a sellable florist bouquet.
 
-If any audit fails, regenerate from the sanitized recipe. Do not rewrite the recipe to justify an accidental result.
+If any audit fails, revise the **floral recipe** and regenerate. Do not add props to rescue a weak design.
 
 ---
 
-## 7. Florist Build Sheet — mandatory second deliverable
+## 9. Florist Build Sheet — mandatory second deliverable
 
-After the **final accepted image** exists, always provide the build sheet.
+After the final accepted image exists, always provide a concise build sheet for that exact bouquet.
 
-If the image was regenerated, describe the final accepted bouquet, not an earlier attempt.
-
-Use this concise format:
+Use:
 
 ```markdown
 # Florist Build Sheet
@@ -289,23 +351,24 @@ Use this concise format:
 - Size: S / M (approx. width × height)
 - Shape: ...
 - Cost level: low / medium / high
-- Core visual idea: one short sentence
+- Core visual idea: ...
+- Focal / support / bridge: ...
 
 ## Flowers & foliage
 | Material | Color / treatment | Qty | Role |
 | --- | --- | ---: | --- |
-| ... | ... | ... | focal / support / filler / foliage |
+| ... | ... | ... | focal / support / bridge / line / filler / foliage |
 
-## Wrapping & external materials
+## Wrapping
 - Outer wrap: ...
 - Inner layer: ...
 - Ribbon: ...
 
 ## Assembly
-1. ...
-2. ...
-3. ...
-4. ...
+1. Establish the focal cluster and depth.
+2. Add support material without creating a flat color block.
+3. Add the transition bridge and directional line.
+4. Preserve negative space, then wrap and tie.
 
 ## Substitutions
 - ... → ...
@@ -315,33 +378,35 @@ Use this concise format:
 - ...
 ```
 
-The build sheet and image must describe the **same bouquet**.
+The build sheet must never introduce a visible object that is absent from or forbidden in the accepted bouquet.
 
-Before ending the run, verify internally:
+Before ending, verify internally:
 
-- [ ] Final accepted bouquet image delivered.
-- [ ] Florist Build Sheet delivered for that exact image.
-
-If either is missing, the run is incomplete.
+- [ ] final accepted bouquet image delivered;
+- [ ] matching florist build sheet delivered.
 
 ---
 
-## Batch / golden-sample testing
+## 10. Golden-sample target
 
-For every reference, generate one standalone bouquet. Do not generate test matrices or comparison collages as the final bouquet image.
+A strong result should make viewers recognize the **palette and atmosphere** of the reference while seeing only a sophisticated real bouquet.
 
-Golden samples should include portraits, album covers, landscapes, architecture, abstract artwork, strong color zoning, and dramatic lighting.
+It should preserve:
 
-A successful test preserves only:
-
-- color hierarchy and rough proportions;
-- coarse spatial color zoning;
-- broad density / direction;
-- high-level material feel;
+- color hierarchy;
+- broad visual weight;
+- macro color direction;
+- contrast;
+- rhythm and movement;
+- negative-space character;
 - mood.
 
-It must **not preserve what the source depicts**.
+It must not preserve:
+
+- source subject;
+- recognizable source geometry;
+- graphic motifs or literal content.
 
 The target is:
 
-> **a normal, non-figurative, florist-reproducible bouquet that carries the reference image's palette and atmosphere without carrying its subject, shape, symbols, or literal content — plus a matching build sheet.**
+> **a cohesive, designed, non-figurative florist bouquet — not a picture made of flowers and not a set of color piles — plus a build sheet a florist can actually execute.**
