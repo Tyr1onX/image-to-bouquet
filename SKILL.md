@@ -1,324 +1,348 @@
 ---
 name: image-to-bouquet
-description: Turn one reference image into one visually faithful, florist-producible bouquet. Support fresh, preserved, hybrid, and art modes. Preserve palette, color relationships, rhythm, mood, material character, wrapping language, and finish without copying source content. Output one final bouquet image plus one concise Chinese florist execution sheet.
+description: 将一张参考图转译成一束可落地、具有设计感的花束。支持鲜花、永生花、混合花材与艺术花材；保留配色、相对色彩位置、气质、节奏与包装语言，但不复制原图主体。输出一张最终花束图和一份简洁中文花艺师执行单。
 ---
 
-# Image to Bouquet
+# Image to Bouquet — Skill 规则文档
 
-Turn one reference image into **one beautiful bouquet that a florist can actually reproduce**.
+目标：把参考图的**视觉语言**重新设计成一束本身就成立、好看、现实中能制作的花束。
 
-The result must read first as a professionally designed bouquet, never as the source image rebuilt with flowers.
+不是“用花拼原图”。最终结果必须先读作一束专业花束，再让人感受到参考图的配色、气质和设计关系。
 
-A complete run has exactly two deliverables:
+完整任务只有两个交付物：
 
-1. one standalone final bouquet image;
-2. one concise **Chinese** florist execution sheet for that exact bouquet.
-
-Do not stop after image generation.
+1. 一张最终花束成品图；
+2. 一份对应这张图的简洁中文《花艺师执行单》。
 
-## 1. Resolve preferences
+图片生成后不能直接结束。
 
-Support optional controls. If unspecified, choose automatically.
+## 1. 用户参数
 
-### Material mode
-- `auto` — choose the best mode
-- `fresh` — fresh flowers and foliage
-- `preserved` — preserved flowers/botanicals first
-- `hybrid` — fresh + preserved / dried / dyed botanicals
-- `art` — visual fidelity first; high-quality artificial botanicals may also be used
-
-Recommended auto behavior:
-- natural portrait / landscape / gift use → `fresh` or `hybrid`
-- album cover / poster / strong graphic palette → `preserved` by default
-- metallic / neon / hard-to-source natural palette → `hybrid` or `art`
-
-Other optional controls:
-- color fidelity: `natural / balanced / strict`
-- design intensity: `safe / editorial / bold`
-- budget: `low / medium / high`
-- wrapping: `minimal / commercial / editorial / luxury / color-led`
-- stem finish: `auto / open / partial / covered`
-
-Explicit user choices override auto selection.
-
-## 2. Extract design language, not source content
-
-Transfer only:
-- dominant / secondary / accent colors and rough proportions;
-- broad color placement and visual weight;
-- warm/cool, light/dark, muted/saturated relationships;
-- rhythm, movement, depth, negative space;
-- material feel and mood.
+支持以下可选项；用户未指定时自动判断。
 
-Never transfer:
-- source subject or silhouette;
-- face/body geometry;
-- object/building contours or scene layout;
-- graphic linework;
-- text, logos, symbols, printed artwork, or recognizable source fragments.
+### 材质模式
+- `auto`：自动选择
+- `fresh`：鲜花与鲜叶优先
+- `preserved`：永生花 / 保鲜花优先
+- `hybrid`：鲜花 + 永生花 / 干花 / 染色花材
+- `art`：视觉还原优先，可使用高质量仿真植物和特殊处理花材
 
-**Composition may survive; depiction may not.**
+默认建议：
+- 日常人像 / 风景 / 送礼 → `fresh` 或 `hybrid`
+- 专辑封面 / 海报 / 强配色视觉 → `preserved` 优先
+- 金属色 / 荧光 / 极端配色 → `hybrid` 或 `art`
 
-After analysis, create a short internal floral brief with no source-specific nouns. When possible, generate from that text brief rather than using the source image as an edit reference.
+其他可选项：
+- 色彩还原：`natural / balanced / strict`
+- 设计强度：`safe / editorial / bold`
+- 预算：`low / medium / high`
+- 包装：`minimal / commercial / editorial / luxury / color-led`
+- 花杆处理：`auto / open / partial / covered`
 
-## 3. Lock palette relationships first
+用户明确指定时，优先服从用户。
 
-Before choosing flowers, define 3–5 palette roles:
-- dominant;
-- secondary;
-- bridge;
-- accent;
-- optional neutral / dark field.
+## 2. 先抽象参考图，再做花束
 
-For each role, lock:
-- hue family;
-- lightness;
-- saturation;
-- warm/cool bias;
-- approximate visual share;
-- broad position.
+只允许保留：
+- 主色 / 辅色 / 点缀色及大致比例；
+- 颜色在画面中的**相对位置**；
+- 冷暖、明暗、饱和度关系；
+- 视觉重心、节奏、动势、层次、留白；
+- 材质感、气质和情绪。
 
-Also record the relationship:
-- hard split or soft transition;
-- clean block or blended overlap;
-- dark-to-light lift;
-- cool-to-warm drift;
-- one dominant field with a small counter-color, or two near-equal poles.
+不得保留：
+- 人脸、五官、人体或人物轮廓；
+- 建筑 / 物体 / 场景轮廓；
+- 原图局部边缘和几何线稿；
+- 文字、Logo、符号、封面图案、可识别原图碎片。
 
-Assign color work across **flowers, foliage, wrapping, and ribbon**.
+**构图关系可以保留，具象内容不能保留。**
 
-Rules:
-- the bouquet should remain related to the source at thumbnail size;
-- vivid references must not collapse into generic pastel floristry;
-- do not give every source color equal flower coverage;
-- large flat fields are often better carried by wrapping than by extra flower species;
-- matching isolated swatches is not enough if the relationships feel wrong.
+分析后先形成一份不含原图专有名词的内部花艺简报。能走纯文本生成时，优先用这份简报生成，而不是继续把原图作为编辑底图。
 
-### Selective gradient policy
+## 3. 建立“相对色彩地图”
 
-Gradient is a tool, not a default style.
+不要只提取几个色值。要记录颜色在画面中的粗略位置关系。
 
-Use it only when the source contains meaningful color drift or one controlled transition improves fidelity.
+允许使用的空间信息只有大区块，例如：
+- 左 / 中 / 右；
+- 上 / 中 / 下；
+- 左上 / 右上 / 左下 / 右下；
+- 中心焦点与边缘场。
 
-Good uses:
-- a narrow bridge where one palette genuinely drifts into another;
-- one preserved/dyed flower family with believable petal-edge or center-to-edge ombré;
-- hydrangea, rose, carnation, orchid, fine foliage, or wrapping with a source-aligned transition;
-- layered translucent wrapping that connects two strong fields.
+禁止沿着人物、物体、建筑的真实轮廓做映射。
 
-Rules:
-- default to **1–2 gradient moments at most**;
-- keep solid-color anchor flowers;
-- gradient direction and color order must match the source;
-- do not make every bloom gradient;
-- do not add gradient simply because it looks decorative;
-- if the source is mostly solid-color, keep the bouquet mostly solid-color.
-
-## 4. Flower-first material selection
-
-The bouquet subject should be **beautiful flower forms first**.
-
-Choose materials by:
-- color accuracy;
-- flower shape;
-- texture;
-- scale;
-- visual personality;
-- movement;
-- real availability in the selected mode.
-
-For preserved bouquets, start from mature, florist-friendly families:
-- rose / garden rose;
-- hydrangea;
-- carnation;
-- ranunculus-like flowers when genuinely available;
-- mum / chrysanthemum families;
-- orchids when genuinely available;
-- gypsophila and fine preserved fillers;
-- restrained eucalyptus and fine line botanicals.
-
-Keep foliage subordinate unless the source is explicitly botanical. Flowers should normally occupy the clear visual majority of the bouquet face.
-
-Do not let oversized broad leaves, spathes, tropical foliage masses, or awkward sculptural botanicals dominate merely because their shape resembles part of the source.
-
-Prefer **3–5 strong material families** over many weak species.
-
-For preserved / hybrid / art modes, verify unusual flower types, extreme colors, metallic finishes, gradient treatments, or specialty foliage against real florist/supplier availability when web/catalog access exists. Do not invent convenient materials.
-
-Hidden florist wire/tape is allowed for construction, but never as a visible design element.
-
-## 5. Design wrapping architecture
-
-Wrapping is a **structural design system**, not merely a color choice.
-
-Choose one primary architecture:
-- `open fan` — airy, spread, casual or color-led;
-- `asymmetric wing` — sharper, editorial, directional;
-- `nested cone` — compact, polished, giftable;
-- `layered collar` — fuller framing around the bouquet face;
-- `half-enclosed` — open flowers with a more finished lower body;
-- `covered base` — clean premium finish, especially suitable for preserved/editorial bouquets.
-
-Choose wrapping by:
-- hue and value;
-- translucency and sheen;
-- stiffness and fold behavior;
-- number and direction of layers;
-- edge rhythm and outer silhouette;
-- relation to focal flowers and negative space.
+每个颜色角色记录：
+- 色相；
+- 明度；
+- 饱和度；
+- 冷暖；
+- 大致面积；
+- 粗略空间位置；
+- 与其他颜色是硬切、交叠、渐变还是点状跳色。
 
-Possible materials include matte florist paper, translucent/frosted paper, soft tissue, structured paper, organza, fine mesh, and suitable ribbon.
+最终花束不要求像像素地图一样逐格对应，但应该在缩略图尺度上保留原图最重要的色彩重心。
 
-Use wrapping to carry large neutral, dark, or saturated fields instead of forcing flowers to do all color work.
+例如原图“左冷右暖”，花束可以保留左侧偏冷、右侧偏暖；但不能为了还原一个人的脸，把冷暖区排成五官。
 
-A subtle layered fade or gradient is allowed only when it corresponds to the source and improves the transition.
-
-Do not print source imagery, text, logos, or recognizable artwork on the wrapping.
-
-## 6. Decide stem / handle finish
-
-Exposed stems are optional, not mandatory.
-
-Choose `open`, `partial`, or `covered` according to the bouquet.
-
-Prefer open stems when:
-- fresh flowers and natural garden character are important;
-- visible stems add lightness or authenticity;
-- stems are clean, balanced, and intentional.
-
-Prefer partial or covered stems when:
-- using preserved / hybrid / art mode;
-- the bouquet is premium, editorial, compact, or gift-ready;
-- exposed stems would look thin, rough, sparse, uneven, or unfinished;
-- the lower silhouette benefits from a wrapped sleeve or complete base.
-
-Rules:
-- never expose stems just because bouquets often show stems;
-- exposed stems must be neat and proportionate;
-- concealed stems must look like believable florist wrapping, not a vase or hard pedestal;
-- the lower third must feel as resolved as the bouquet face.
-
-## 7. Design the bouquet, not a color pile
-
-Every bouquet needs one memorable floral decision, such as:
-- off-center focal cluster with counterweight;
-- one hero flower family against smaller textures;
-- clear diagonal / upward botanical movement;
-- concentrated warm/cool tension with a narrow bridge;
-- strong scale contrast;
-- wrapping-led silhouette;
-- deliberate negative space.
-
-Build around:
-- focal — unmistakable first read;
-- support — balances without mirroring;
-- bridge — connects color groups without averaging them;
-- line / movement — botanical only;
-- depth — front / middle / upper-rear;
-- negative space — enough breathing room to avoid a flower wall.
-
-If the result can be summarized as `one pile per color`, redesign it.
-
-## 8. Beauty gate
-
-Reject and regenerate if any are true:
-- palette relationships are noticeably weaker than the source;
-- individual hues are close but cool/warm, light/dark, or overlap logic is wrong;
-- gradient is missing where it matters, placed wrongly, or overused;
-- main materials are bulky, awkward, leaf-heavy, or less attractive than a simpler flower-led solution;
-- wrapping architecture, layering, folds, or silhouette feel generic or awkward;
-- stems/base look messy, thin, unfinished, overexposed, or inconsistent with the bouquet style;
-- the bouquet face feels designed but the lower section does not;
-- no clear focal hierarchy, weak rhythm, flat depth, mechanical symmetry, or obvious color piles;
-- the result is pleasant but interchangeable with a generic catalog bouquet;
-- flowers collectively form a face, body, object, logo, picture, scene, or source-specific shape;
-- visible cards, text, graphics, wire frameworks, lights, electronics, or unrelated inserts appear;
-- material/color/gradient is invented, construction is implausible, or the execution sheet cannot reproduce the visible result.
-
-Target:
-
-> recognizable palette + correct color relationships + selective justified gradients + beautiful flower forms + deliberate wrapping architecture + resolved handle finish + memorable bouquet design + florist reproducibility + zero literal source content
-
-## 9. Generate from a short florist brief
-
-Use a fresh text-to-image path when available.
-
-The generation brief should contain only:
-- bouquet form;
-- material mode;
-- verified materials and approximate counts;
-- focal / support / bridge roles;
-- physical palette and macro color direction;
-- gradient moments, if any;
-- hero design move;
-- depth, movement, negative space;
-- wrapping architecture, materials, layers, and ribbon;
-- stem / handle finish;
-- neutral color-faithful product/editorial photography.
-
-Keep the generation prompt positive and florist-specific.
-
-## 10. Final user-facing output contract
-
-This section is mandatory.
-
-### Language
-
-Unless the user explicitly requests another language, **all user-visible text must be Chinese**.
-
-Internal English keywords may be used for reasoning only. Never expose raw internal values such as `preserved`, `strict`, `editorial`, `asymmetric wing`, `covered`, `focal`, `support`, or `bridge` in the final response.
-
-Use these Chinese equivalents when needed:
-- fresh → 鲜花
-- preserved → 永生花
-- hybrid → 混合花材
-- art → 艺术花材
-- natural → 自然
-- balanced → 平衡
-- strict → 严格
-- safe → 克制
-- editorial → 编辑感
-- bold → 大胆
-- open → 露枝
-- partial → 半包
-- covered → 全包
-- open fan → 开放扇形
-- asymmetric wing → 非对称翼形
-- nested cone → 嵌套锥形
-- layered collar → 层叠围边
-- half-enclosed → 半包围
-- covered base → 覆盖式底部
-
-### Output only the finished result
-
-Do **not** output any of the following unless the user explicitly asks:
-- installation/update/version status;
-- test iteration labels such as “第六版”;
-- “已安装最新版”“已完成测试”等 process chatter;
-- local filesystem paths;
-- raw output file paths or “查看图片” links to local paths;
-- Git commit / branch / PR information;
-- supplier verification notes or supplier links;
-- web citations or sourcing links;
-- internal prompt, internal recipe, audit log, or regeneration history;
-- English headings, English role names, or English mode names.
-
-If web/catalog verification was used, use it silently to choose valid materials. Only mention sourcing details if the user asks.
-
-### Final structure
-
-The final response contains only:
-
-1. the final bouquet image, presented through the platform’s image/file output mechanism without printing a local path;
-2. the following concise Chinese execution sheet.
-
-Use **bullets instead of a Markdown table** for materials to avoid broken table rendering.
+## 4. 色彩关系优先于单个色值
+
+花束必须匹配：
+- 主色 / 辅色 / 点缀色比例；
+- 冷暖对撞还是柔和过渡；
+- 深色是否压在底部或边缘；
+- 高饱和色是否只占少量视觉焦点；
+- 原图是“大片纯色 + 小面积跳色”，还是“双主色对峙”。
+
+不要让所有颜色平均分配。
+
+大面积平坦色块可以交给包装承担，不必为了补颜色增加很多花材。
+
+如果“颜色都差不多对了，但整体还是不像”，优先检查**颜色之间的关系和相对位置**，不要继续机械换花。
+
+### 选择性渐变
+
+渐变是工具，不是默认风格。
+
+只在以下情况使用：
+- 原图本身存在明显色彩漂移；
+- 两个主色之间确实需要一个过渡桥；
+- 某种永生花 / 染色花材的花瓣渐变能自然对应原图；
+- 半透明包装叠色可以更准确完成过渡。
+
+规则：
+- 默认只保留 1–2 个渐变节点；
+- 必须同时保留纯色锚点；
+- 渐变方向和颜色顺序要与原图一致；
+- 不要整束都做渐变；
+- 原图大部分是纯色时，花束也应以纯色为主。
+
+## 5. 花材选择：外形 > 颜色 > 性格 > 含义 > 可实现性，共同判断
+
+花不能只因为“颜色对”就入选。
+
+每种候选花材至少判断五件事：
+
+1. **外形**：花瓣、轮廓、大小是否适合当前设计；
+2. **颜色**：是否能准确承担某个色彩角色；
+3. **性格**：现代 / 浪漫 / 冷感 / 雕塑感 / 野生 / 复古 / 轻盈等是否匹配参考图；
+4. **含义**：花语或文化意象是否与主题相容；
+5. **可实现性**：在所选材质模式下是否真实存在、可采购、可制作。
+
+权重规则：
+- **花型和整体好看程度优先**；
+- 花语 / 象征意义是加分项，不得为了寓意牺牲花型和色彩；
+- 花语存在地域差异或不确定时，不要编造；内部可忽略，最终执行单也不必强行输出。
+
+### 永生花优先花材池
+
+优先从成熟、常见、好看的品类开始：
+- 玫瑰 / 庭园玫瑰；
+- 绣球；
+- 康乃馨；
+- 洋牡丹类（确认真实可采购时）；
+- 菊类；
+- 兰花类（确认真实可采购时）；
+- 满天星、小型永生花、细碎填充花；
+- 尤加利和细线条植物材料。
+
+原则：
+- 花朵应占花束正面的视觉主体；
+- 叶材通常做支撑，不要无理由压过花朵；
+- 大红掌、大海芋、巨型热带叶片、宽大叶材不是默认主角，只在造型和主题真正适合时使用；
+- 优先 3–5 个强花材家族，而不是为了追色增加十几种弱花材。
+
+## 6. 花束本身必须有设计
+
+每束至少有一个明确记忆点：
+- 偏心焦点 + 另一侧配重；
+- 一种强主花 + 小尺度辅花；
+- 明确向上 / 斜向动势；
+- 冷暖张力 + 窄过渡桥；
+- 大小花型反差；
+- 包装轮廓成为设计的一部分；
+- 有意识的留白。
+
+花束结构至少包含：
+- 主焦点；
+- 支撑；
+- 过渡；
+- 线条 / 动势；
+- 前中后层次；
+- 留白。
+
+不能平均铺满，不能机械左右对称，不能变成“一个颜色一堆花”。
+
+## 7. 包装是第二个设计主体
+
+包装不是最后随便选一张纸。
+
+需要同时决定：
+- **包法**；
+- **颜色**；
+- **材质**；
+- **纹理**；
+- **透明度**；
+- **软硬度**；
+- **层数**；
+- **折线方向**；
+- **外轮廓**；
+- **丝带与收口**。
+
+### 常用包法
+- 开放扇形：轻盈、展开、自然；
+- 非对称翼形：更锐利、编辑感、方向感强；
+- 嵌套锥形：紧凑、礼品感、完成度高；
+- 层叠围边：强化花束边缘与层次；
+- 半包围：正面开放、下部更完整；
+- 覆盖式底部：适合永生花、精品礼物、编辑感作品。
+
+### 可选包装材质
+- 哑光花艺纸；
+- 半透明 / 雾面纸；
+- 柔软薄纸；
+- 硬挺结构纸；
+- 珠光 / 金属感纸；
+- 皱纹 / 压纹 / 纤维纹理纸；
+- 欧根纱、细网纱；
+- 适合的缎带、罗纹带、纱带。
+
+### 包装纹理与图案
+
+允许使用与主题相容的**抽象纹理或简单图案**，例如：
+- 细纤维纹；
+- 雾化渐变；
+- 珠光 / 金属颗粒；
+- 轻微皱褶；
+- 简单波点或几何重复纹理。
+
+限制：
+- 不得把原图、人物、文字、Logo、专辑封面、可识别图案直接印到包装上；
+- 图案只能是次级设计语言，不能抢过花朵；
+- 不要为了复杂而复杂。
+
+### 包装的色彩任务
+
+包装可以承担：
+- 原图的大面积背景色；
+- 深色 / 中性色场；
+- 冷暖分区；
+- 花材之间的过渡；
+- 外轮廓与视觉方向。
+
+如果花束颜色正确但看起来普通，优先检查包法、材质和外轮廓，而不是继续加花。
+
+## 8. 花杆 / 底部收口按实际判断
+
+花杆外露不是默认规则。
+
+优先露枝：
+- 鲜花模式；
+- 花园感、自然感、轻盈感；
+- 花杆本身整洁、比例好看。
+
+优先半包 / 全包：
+- 永生花 / 混合花材 / 艺术花材；
+- 精品、礼物、编辑感、紧凑设计；
+- 裸露花杆显得稀疏、凌乱、廉价或破坏轮廓。
+
+要求：
+- 露枝必须整洁且有意图；
+- 全包必须看起来是花艺包装，不像花瓶或硬底座；
+- 花束下半部分的完成度不能明显弱于上半部分。
+
+## 9. 材料真实性与可采购性
+
+永生花 / 混合花材 / 艺术花材模式下：
+- 特殊花型、极端颜色、金属色、渐变、染色叶材等，在有网络或供应商目录时应先验证；
+- 不要为了方便发明不存在的品种或处理方式；
+- 无法确认时，换成现实可采购的替代品；
+- 隐藏铁丝、胶带可用于制作，但不得作为可见设计元素。
+
+现实可制作不等于“必须全部天然鲜花”。
+
+## 10. 禁止重新具象化原图
+
+即使所有材料都是真花，只要整体重新拼成以下内容，也判定失败：
+- 人脸 / 五官；
+- 人体 / 动物；
+- 建筑 / 物体；
+- Logo / 字母；
+- 原图中的具体图案或场景。
+
+花束只能借用原图的视觉关系，不得重新“画”出原图。
+
+默认也禁止：
+- 可见铁丝骨架、黑杆、几何网格；
+- 灯管、LED、电子装置；
+- 吊牌、卡片、标签；
+- 亚克力、模型、无关道具；
+- 原图打印件。
+
+除非用户明确要求某个真实花艺附加元素，否则不要主动添加。
+
+## 11. 审美验收
+
+出现以下任一情况，重新设计：
+- 色彩接近但相对位置、比例或冷暖逻辑明显不对；
+- 渐变缺失、方向错误或滥用；
+- 主花外形笨重、俗气，或叶材压过花朵；
+- 花语 / 寓意牵强，反而破坏视觉；
+- 没有明确焦点、层次、动势和留白；
+- 一种颜色对应一堆花，像色块拼接；
+- 包装颜色对了，但包法、材质、纹理或外轮廓普通；
+- 花束上半部分完整，下半部分像没做完；
+- 成品好看但过于通用，和多数参考图都能套用；
+- 出现任何原图具象复制；
+- 出现现实无法采购 / 无法制作的材料或结构。
+
+最终目标：
+
+> **颜色关系贴近 + 相对色彩位置合理 + 花型漂亮 + 花材性格匹配 + 含义不冲突 + 包装有设计 + 底部完成度高 + 现实可复现 + 不复制原图内容**
+
+## 12. 生成提示词规则
+
+最终图片生成提示只包含花艺信息：
+- 花束形式；
+- 材质模式；
+- 花材与大致数量；
+- 主花 / 支撑 / 过渡；
+- 色彩角色与粗略相对位置；
+- 必要的局部渐变；
+- 视觉焦点和动势；
+- 前中后层次与留白；
+- 包装结构、材质、纹理、层次；
+- 花杆 / 底部处理；
+- 中性、忠实色彩的产品摄影。
+
+保持提示词正向、简洁、花艺化。不要在最终生成提示里重复原图专有名词或长串“不要出现……”的负面词。
+
+## 13. 最终用户可见输出
+
+除非用户明确要求其他语言，所有用户可见文字必须是中文。
+
+最终只输出：
+
+1. 花束成品图；
+2. 简洁中文《花艺师执行单》。
+
+默认不输出：
+- 安装状态、版本、测试轮次；
+- 本地路径、文件路径；
+- Git 提交、分支、PR 信息；
+- 供应商验证过程和链接；
+- 内部提示词、审计日志、重生成历史；
+- 英文模式名、英文栏目名。
+
+花材清单使用项目符号，不使用 Markdown 表格。
+
+固定格式：
 
 ```markdown
 # 花艺师执行单
 
 ## 设计
-- 尺寸：小 / 中 / 大（可补充约宽 × 高）
+- 尺寸：小 / 中 / 大
 - 材质模式：鲜花 / 永生花 / 混合花材 / 艺术花材
 - 色彩还原：自然 / 平衡 / 严格
 - 设计强度：克制 / 编辑感 / 大胆
@@ -332,9 +356,10 @@ Use **bullets instead of a Markdown table** for materials to avoid broken table 
 - …… × 数量｜类型｜颜色或处理｜作用
 
 ## 包装
-- 包装结构：开放扇形 / 非对称翼形 / 嵌套锥形 / 层叠围边 / 半包围 / 覆盖式底部
+- 包装结构：……
 - 外层：……
 - 内层：……
+- 纹理 / 材质：……
 - 丝带：……
 - 视觉作用：……
 - 花杆处理：露枝 / 半包 / 全包
@@ -353,6 +378,4 @@ Use **bullets instead of a Markdown table** for materials to avoid broken table 
 - ……
 ```
 
-Keep the execution sheet concise. Do not repeat design reasoning, testing history, source-analysis notes, or procurement research.
-
-The execution sheet must match the final image exactly and disclose preserved, dyed, dried, artificial, or gradient-treated materials when used.
+执行单必须与最终图片一致；使用永生、染色、干花、仿真、渐变处理时要明确标注。
