@@ -1,6 +1,6 @@
 ---
 name: image-to-bouquet
-description: Turn one reference image into one visually faithful, florist-producible bouquet. Support fresh, preserved, hybrid, and art modes. Preserve palette, visual weight, rhythm, mood, and material character without copying the source subject. Output one final bouquet image plus one concise florist build sheet.
+description: Turn one reference image into one visually faithful, florist-producible bouquet. Support fresh, preserved, hybrid, and art modes. Preserve palette, visual weight, rhythm, mood, material character, and color relationships without copying the source subject. Output one final bouquet image plus one concise florist build sheet.
 ---
 
 # Image to Bouquet
@@ -66,7 +66,7 @@ Never transfer:
 
 After analysis, create a short internal floral brief with no source-specific nouns. When possible, generate from that text brief rather than using the source image as an edit reference.
 
-## 3. Lock the palette first
+## 3. Lock the palette and its relationships first
 
 Before choosing flowers, define 3–5 palette roles:
 - dominant;
@@ -83,13 +83,41 @@ For each role, lock:
 - approximate visual share;
 - broad position.
 
-Then assign the color to **flowers, foliage, wrapping, or ribbon**.
+Then record how the roles interact:
+- hard split or soft transition;
+- clean block or blended overlap;
+- dark-to-light lift;
+- cool-to-warm drift;
+- dominant field with a small counter-color, or two near-equal poles.
+
+Then assign the color work to **flowers, foliage, wrapping, or ribbon**.
 
 Rules:
 - the bouquet should still feel related to the source at thumbnail size;
 - vivid references must not collapse into generic pastel floristry;
 - do not give every source color equal flower coverage;
-- large flat color fields are often better carried by wrapping than by adding more flower species.
+- large flat color fields are often better carried by wrapping than by adding more flower species;
+- matching individual swatches is not enough if the relationship between them feels wrong.
+
+### Selective gradient policy
+
+Gradient is a tool, not a default style.
+
+Use it only when the source contains a meaningful color drift or when one controlled transition materially improves the bouquet.
+
+Good uses:
+- a narrow bridge where cool genuinely drifts into warm;
+- one preserved/dyed flower family with believable petal-edge or center-to-edge ombré;
+- hydrangea, rose, carnation, orchid, fine foliage, or wrapping with a source-aligned transition;
+- a layered wrapping fade that connects two strong fields without flattening them.
+
+Rules:
+- default to **1–2 gradient moments at most**;
+- keep solid-color anchor flowers so the bouquet still has structure;
+- gradient direction and color order must match the source;
+- do not make every bloom gradient;
+- do not add gradient simply because it looks decorative;
+- if the source is mostly solid-color, keep the bouquet mostly solid-color.
 
 ## 4. Flower-first material selection
 
@@ -138,9 +166,9 @@ Prefer **3–5 strong material families** over many small species.
 For `preserved`, `hybrid`, and `art` modes, use florist-sourceable materials.
 
 When web/catalog access is available:
-- verify unusual preserved flower types, extreme colors, metallic finishes, or specialty foliage against a current supplier catalog before relying on them;
+- verify unusual preserved flower types, extreme colors, metallic finishes, gradient treatments, or specialty foliage against a current supplier catalog before relying on them;
 - prefer established preserved-flower supplier families such as Florever, RoseAmor, Verdissimo, or equivalent regional suppliers;
-- do not invent a preserved variety or color treatment just because it would look convenient.
+- do not invent a preserved variety, color, or gradient treatment just because it would be convenient.
 
 If a desired exact material is uncertain, use a verified substitute and state it in the build sheet.
 
@@ -160,6 +188,8 @@ Design it by:
 - relation to the focal flowers.
 
 Use wrapping to carry large neutral, dark, or saturated fields instead of forcing flowers to do all color work.
+
+A subtle layered fade or gradient is allowed only when it corresponds to the source and improves the transition between major color fields.
 
 Do not print the source image, text, logo, or recognizable artwork on the wrapping.
 
@@ -188,17 +218,19 @@ If the result can be summarized as `one pile per color`, redesign it.
 
 Reject and regenerate if any are true:
 - **Color failure:** dominant / secondary / accent relationships are noticeably weaker than the source.
+- **Relationship failure:** individual hues may be close, but the source's cool/warm, light/dark, or overlap logic is missing.
+- **Gradient failure:** gradient is missing where it matters, placed in the wrong area/direction, or overused as decoration.
 - **Flower-form failure:** the main visible materials are bulky, awkward, leaf-heavy, or less attractive than a simpler flower-led solution.
 - **Design failure:** no clear focal hierarchy, weak rhythm, flat depth, mechanical symmetry, or obvious color piles.
 - **Wrapping failure:** wrapping feels generic or disconnected from the palette.
 - **Generic failure:** pleasant but interchangeable with a standard catalog bouquet.
 - **Depiction failure:** flowers collectively form a face, body, object, logo, picture, scene, or source-specific shape.
 - **Prop failure:** visible cards, text, graphics, wire frameworks, lights, electronics, or unrelated inserts appear.
-- **Reality failure:** material/color is invented, construction is implausible, or the florist build sheet cannot source/reproduce the visible result.
+- **Reality failure:** material/color/gradient is invented, construction is implausible, or the florist build sheet cannot source/reproduce the visible result.
 
 The target is:
 
-> **recognizable palette + beautiful flower forms + deliberate wrapping + memorable bouquet design + florist reproducibility + zero literal source content**
+> **recognizable palette + correct color relationships + selective justified gradients + beautiful flower forms + deliberate wrapping + memorable bouquet design + florist reproducibility + zero literal source content**
 
 ## 9. Generate from a short florist brief
 
@@ -210,6 +242,7 @@ The generation brief should contain only:
 - verified materials and approximate counts;
 - focal / support / bridge roles;
 - physical palette and macro color direction;
+- gradient moments, if any;
 - hero design move;
 - depth, movement, negative space;
 - wrapping system and ribbon;
@@ -217,7 +250,7 @@ The generation brief should contain only:
 
 Useful prompt shape:
 
-> Editorial-quality, florist-producible hand-tied bouquet; [mode]; flower-led composition with [hero move]; [materials + counts + treatments]; [palette roles and direction]; clear focal/support/bridge hierarchy; varied flower scale and depth; restrained foliage; intentional negative space; designed [wrapping]; neutral color-faithful lighting; believable botanical detail.
+> Editorial-quality, florist-producible hand-tied bouquet; [mode]; flower-led composition with [hero move]; [materials + counts + treatments]; [palette roles and direction]; [one or two selective gradient moments only if justified]; clear focal/support/bridge hierarchy; varied flower scale and depth; restrained foliage; intentional negative space; designed [wrapping]; neutral color-faithful lighting; believable botanical detail.
 
 Keep the prompt positive and florist-specific.
 
@@ -236,6 +269,7 @@ After the final accepted image, output:
 - Core visual idea: ...
 - Hero move: ...
 - Focal / support / bridge: ...
+- Gradient use: none / subtle / moderate; where and why
 
 ## Materials
 | Material | Type | Color / treatment | Qty | Role |
@@ -251,7 +285,7 @@ After the final accepted image, output:
 ## Assembly
 1. Establish focal, movement, and depth.
 2. Add support with unequal scale and height.
-3. Add bridge materials without flattening palette contrast.
+3. Add bridge materials and any selective gradient moment without flattening palette contrast.
 4. Build wrapping as part of the composition, preserve negative space, then tie.
 
 ## Substitutions
@@ -262,4 +296,4 @@ After the final accepted image, output:
 - ...
 ```
 
-The build sheet must match the final image exactly and disclose preserved, dyed, dried, or artificial materials when used.
+The build sheet must match the final image exactly and disclose preserved, dyed, dried, artificial, and gradient-treated materials when used.
