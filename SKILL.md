@@ -1,60 +1,52 @@
 ---
 name: image-to-bouquet
-description: Turn one reference image into one visually faithful, florist-producible bouquet. Support fresh, preserved, hybrid, and art modes. Preserve palette, visual weight, rhythm, mood, material character, color relationships, and wrapping language without copying the source subject. Output one final bouquet image plus one concise florist build sheet.
+description: Turn one reference image into one visually faithful, florist-producible bouquet. Support fresh, preserved, hybrid, and art modes. Preserve palette, color relationships, rhythm, mood, material character, wrapping language, and finish without copying source content. Output one final bouquet image plus one concise Chinese florist execution sheet.
 ---
 
 # Image to Bouquet
 
-Turn **one reference image into one beautiful bouquet that a florist can actually make**.
+Turn one reference image into **one beautiful bouquet that a florist can actually reproduce**.
 
 The result must read first as a professionally designed bouquet, never as the source image rebuilt with flowers.
 
 A complete run has exactly two deliverables:
 
-1. one standalone bouquet image;
-2. one concise florist build sheet for that exact bouquet.
+1. one standalone final bouquet image;
+2. one concise **Chinese** florist execution sheet for that exact bouquet.
 
 Do not stop after image generation.
 
 ## 1. Resolve preferences
 
-Support these optional controls. If unspecified, choose automatically.
+Support optional controls. If unspecified, choose automatically.
 
 ### Material mode
-- **auto** — choose the best mode
-- **fresh** — fresh flowers and fresh foliage
-- **preserved** — preserved flowers/botanicals as the main material system
-- **hybrid** — fresh + preserved / dried / dyed botanicals
-- **art** — visual fidelity first; high-quality artificial botanicals may also be used
+- `auto` — choose the best mode
+- `fresh` — fresh flowers and foliage
+- `preserved` — preserved flowers/botanicals first
+- `hybrid` — fresh + preserved / dried / dyed botanicals
+- `art` — visual fidelity first; high-quality artificial botanicals may also be used
 
 Recommended auto behavior:
 - natural portrait / landscape / gift use → `fresh` or `hybrid`
 - album cover / poster / strong graphic palette → `preserved` by default
-- extreme metallic / neon / impossible natural palette → `hybrid` or `art`
+- metallic / neon / hard-to-source natural palette → `hybrid` or `art`
 
-### Color fidelity
-- **natural** — natural flower colors first
-- **balanced** — realism and palette fidelity balanced
-- **strict** — source palette first; use preserved/dyed materials when needed
+Other optional controls:
+- color fidelity: `natural / balanced / strict`
+- design intensity: `safe / editorial / bold`
+- budget: `low / medium / high`
+- wrapping: `minimal / commercial / editorial / luxury / color-led`
+- stem finish: `auto / open / partial / covered`
 
-### Design intensity
-- **safe** — elegant and restrained
-- **editorial** — stronger focal, wrapping, and material contrast
-- **bold** — high-impact and directional
-
-Optional:
-- `budget: low / medium / high`
-- `wrapping: minimal / commercial / editorial / luxury / color-led`
-- `stem_finish: auto / open / partial / covered`
-
-Explicit user choices always override auto selection.
+Explicit user choices override auto selection.
 
 ## 2. Extract design language, not source content
 
 Transfer only:
 - dominant / secondary / accent colors and rough proportions;
 - broad color placement and visual weight;
-- warm/cool, light/dark, muted/saturated contrast;
+- warm/cool, light/dark, muted/saturated relationships;
 - rhythm, movement, depth, negative space;
 - material feel and mood.
 
@@ -62,21 +54,21 @@ Never transfer:
 - source subject or silhouette;
 - face/body geometry;
 - object/building contours or scene layout;
-- local graphic linework;
+- graphic linework;
 - text, logos, symbols, printed artwork, or recognizable source fragments.
 
 **Composition may survive; depiction may not.**
 
 After analysis, create a short internal floral brief with no source-specific nouns. When possible, generate from that text brief rather than using the source image as an edit reference.
 
-## 3. Lock the palette and its relationships first
+## 3. Lock palette relationships first
 
 Before choosing flowers, define 3–5 palette roles:
 - dominant;
 - secondary;
 - bridge;
 - accent;
-- optional neutral/dark field.
+- optional neutral / dark field.
 
 For each role, lock:
 - hue family;
@@ -86,33 +78,33 @@ For each role, lock:
 - approximate visual share;
 - broad position.
 
-Then record how the roles interact:
+Also record the relationship:
 - hard split or soft transition;
 - clean block or blended overlap;
 - dark-to-light lift;
 - cool-to-warm drift;
-- dominant field with a small counter-color, or two near-equal poles.
+- one dominant field with a small counter-color, or two near-equal poles.
 
 Assign color work across **flowers, foliage, wrapping, and ribbon**.
 
 Rules:
-- the bouquet should still feel related to the source at thumbnail size;
+- the bouquet should remain related to the source at thumbnail size;
 - vivid references must not collapse into generic pastel floristry;
 - do not give every source color equal flower coverage;
-- large flat color fields are often better carried by wrapping than by extra flower species;
-- matching isolated swatches is not enough if the relationship between them feels wrong.
+- large flat fields are often better carried by wrapping than by extra flower species;
+- matching isolated swatches is not enough if the relationships feel wrong.
 
 ### Selective gradient policy
 
 Gradient is a tool, not a default style.
 
-Use it only when the source contains a meaningful color drift or one controlled transition materially improves the bouquet.
+Use it only when the source contains meaningful color drift or one controlled transition improves fidelity.
 
 Good uses:
-- a narrow bridge where cool genuinely drifts into warm;
+- a narrow bridge where one palette genuinely drifts into another;
 - one preserved/dyed flower family with believable petal-edge or center-to-edge ombré;
 - hydrangea, rose, carnation, orchid, fine foliage, or wrapping with a source-aligned transition;
-- layered translucent wrapping that connects two strong color fields.
+- layered translucent wrapping that connects two strong fields.
 
 Rules:
 - default to **1–2 gradient moments at most**;
@@ -135,106 +127,78 @@ Choose materials by:
 - movement;
 - real availability in the selected mode.
 
-### Preferred preserved vocabulary
-Start from mature, commonly used preserved-flower families before unusual sculptural materials.
+For preserved bouquets, start from mature, florist-friendly families:
+- rose / garden rose;
+- hydrangea;
+- carnation;
+- ranunculus-like flowers when genuinely available;
+- mum / chrysanthemum families;
+- orchids when genuinely available;
+- gypsophila and fine preserved fillers;
+- restrained eucalyptus and fine line botanicals.
 
-**Hero / focal**
-- preserved rose / garden rose
-- ranunculus-style preserved flower
-- carnation
-- hydrangea cluster
-- mum / chrysanthemum families
-- orchid / dendrobium when genuinely available
+Keep foliage subordinate unless the source is explicitly botanical. Flowers should normally occupy the clear visual majority of the bouquet face.
 
-**Bridge / texture**
-- gypsophila
-- small preserved flowers
-- lavender-like materials
-- hydrangea fragments
-- fine dried or preserved fillers
+Do not let oversized broad leaves, spathes, tropical foliage masses, or awkward sculptural botanicals dominate merely because their shape resembles part of the source.
 
-**Line / foliage**
-- restrained eucalyptus
-- ivy / pittosporum-like preserved greens
-- fine preserved or dried line botanicals
+Prefer **3–5 strong material families** over many weak species.
 
-Keep foliage subordinate unless the reference is explicitly botanical or forest-led. Flowers should normally occupy the clear visual majority of the bouquet face.
+For preserved / hybrid / art modes, verify unusual flower types, extreme colors, metallic finishes, gradient treatments, or specialty foliage against real florist/supplier availability when web/catalog access exists. Do not invent convenient materials.
 
-Do not let one oversized broad leaf, spathe, tropical foliage mass, or sculptural botanical dominate merely because its shape resembles part of the source. Anthurium, calla, large leaves, and similar materials are optional accents, not default hero choices.
+Hidden florist wire/tape is allowed for construction, but never as a visible design element.
 
-Prefer **3–5 strong material families** over many small species.
-
-## 5. Verify unusual materials instead of inventing them
-
-For `preserved`, `hybrid`, and `art` modes, use florist-sourceable materials.
-
-When web/catalog access is available:
-- verify unusual preserved types, extreme colors, metallic finishes, gradient treatments, or specialty foliage against a current supplier catalog;
-- prefer established supplier families such as Florever, RoseAmor, Verdissimo, or equivalent regional suppliers;
-- do not invent a variety, color, or treatment simply because it would be convenient.
-
-If an exact material is uncertain, use a verified substitute and state it in the build sheet.
-
-Hidden florist wire/tape may be used for preserved-flower assembly, but it must not become a visible design element.
-
-## 6. Design the wrapping architecture
+## 5. Design wrapping architecture
 
 Wrapping is a **structural design system**, not merely a color choice.
 
-Choose one primary wrapping architecture that suits the bouquet:
-- **open fan** — airy, spread, casual or color-led;
-- **asymmetric wing** — sharper, editorial, directional;
-- **nested cone** — compact, polished, giftable;
-- **layered collar** — fuller edge framing around the bouquet face;
-- **half-enclosed** — flowers stay open while the lower body is visually finished;
-- **covered base / handle sleeve** — clean premium finish, especially suitable for preserved or editorial bouquets.
+Choose one primary architecture:
+- `open fan` — airy, spread, casual or color-led;
+- `asymmetric wing` — sharper, editorial, directional;
+- `nested cone` — compact, polished, giftable;
+- `layered collar` — fuller framing around the bouquet face;
+- `half-enclosed` — open flowers with a more finished lower body;
+- `covered base` — clean premium finish, especially suitable for preserved/editorial bouquets.
 
-Choose material by both appearance and behavior:
-- matte florist paper;
-- translucent / frosted paper;
-- soft tissue;
-- structured paper;
-- organza or fine mesh when appropriate;
-- ribbon with suitable width, sheen, and stiffness.
-
-Design the wrap by:
+Choose wrapping by:
 - hue and value;
 - translucency and sheen;
 - stiffness and fold behavior;
 - number and direction of layers;
-- edge rhythm and silhouette;
+- edge rhythm and outer silhouette;
 - relation to focal flowers and negative space.
 
-Use wrapping to carry large neutral, dark, or saturated source fields instead of forcing flowers to do all color work.
+Possible materials include matte florist paper, translucent/frosted paper, soft tissue, structured paper, organza, fine mesh, and suitable ribbon.
+
+Use wrapping to carry large neutral, dark, or saturated fields instead of forcing flowers to do all color work.
 
 A subtle layered fade or gradient is allowed only when it corresponds to the source and improves the transition.
 
-Avoid generic default wrapping when a deliberate silhouette would materially improve the bouquet. Do not print the source image, text, logo, or recognizable artwork on the wrapping.
+Do not print source imagery, text, logos, or recognizable artwork on the wrapping.
 
-## 7. Decide the stem / handle finish
+## 6. Decide stem / handle finish
 
-Exposed stems are **optional**, not mandatory.
+Exposed stems are optional, not mandatory.
 
-Choose `open`, `partial`, or `covered` according to the bouquet rather than using the same finish every time.
+Choose `open`, `partial`, or `covered` according to the bouquet.
 
-Prefer **open stems** when:
+Prefer open stems when:
 - fresh flowers and natural garden character are important;
-- visible stems add authenticity, lightness, or casual elegance;
-- the stems are clean, balanced, and visually intentional.
+- visible stems add lightness or authenticity;
+- stems are clean, balanced, and intentional.
 
-Prefer **partial or covered stems** when:
+Prefer partial or covered stems when:
 - using preserved / hybrid / art mode;
 - the bouquet is premium, editorial, compact, or gift-ready;
 - exposed stems would look thin, rough, sparse, uneven, or unfinished;
 - the lower silhouette benefits from a wrapped sleeve or complete base.
 
 Rules:
-- never expose stems merely because bouquets often show stems;
+- never expose stems just because bouquets often show stems;
 - exposed stems must be neat and proportionate;
-- concealed stems must look like believable florist wrapping, not a vase or solid pedestal;
+- concealed stems must look like believable florist wrapping, not a vase or hard pedestal;
 - the lower third must feel as resolved as the bouquet face.
 
-## 8. Design the bouquet, not a color pile
+## 7. Design the bouquet, not a color pile
 
 Every bouquet needs one memorable floral decision, such as:
 - off-center focal cluster with counterweight;
@@ -246,36 +210,36 @@ Every bouquet needs one memorable floral decision, such as:
 - deliberate negative space.
 
 Build around:
-- **focal** — unmistakable first read;
-- **support** — balances without mirroring;
-- **bridge** — connects color groups without averaging them;
-- **line / movement** — botanical only;
-- **depth** — front / middle / upper-rear;
-- **negative space** — enough breathing room to avoid a flower wall.
+- focal — unmistakable first read;
+- support — balances without mirroring;
+- bridge — connects color groups without averaging them;
+- line / movement — botanical only;
+- depth — front / middle / upper-rear;
+- negative space — enough breathing room to avoid a flower wall.
 
 If the result can be summarized as `one pile per color`, redesign it.
 
-## 9. Beauty gate
+## 8. Beauty gate
 
 Reject and regenerate if any are true:
-- **Color failure:** dominant / secondary / accent relationships are noticeably weaker than the source.
-- **Relationship failure:** individual hues may be close, but the source's cool/warm, light/dark, or overlap logic is missing.
-- **Gradient failure:** gradient is missing where it matters, placed in the wrong area/direction, or overused as decoration.
-- **Flower-form failure:** main visible materials are bulky, awkward, leaf-heavy, or less attractive than a simpler flower-led solution.
-- **Wrapping-shape failure:** the wrap color is acceptable but its architecture, layering, folds, or silhouette feel generic or awkward.
-- **Handle failure:** stems/base look messy, thin, unfinished, overexposed, or inconsistent with the bouquet style.
-- **Finish failure:** the bouquet face feels designed but the lower section does not.
-- **Design failure:** no clear focal hierarchy, weak rhythm, flat depth, mechanical symmetry, or obvious color piles.
-- **Generic failure:** pleasant but interchangeable with a standard catalog bouquet.
-- **Depiction failure:** flowers collectively form a face, body, object, logo, picture, scene, or source-specific shape.
-- **Prop failure:** visible cards, text, graphics, wire frameworks, lights, electronics, or unrelated inserts appear.
-- **Reality failure:** material/color/gradient is invented, construction is implausible, or the build sheet cannot source/reproduce the visible result.
+- palette relationships are noticeably weaker than the source;
+- individual hues are close but cool/warm, light/dark, or overlap logic is wrong;
+- gradient is missing where it matters, placed wrongly, or overused;
+- main materials are bulky, awkward, leaf-heavy, or less attractive than a simpler flower-led solution;
+- wrapping architecture, layering, folds, or silhouette feel generic or awkward;
+- stems/base look messy, thin, unfinished, overexposed, or inconsistent with the bouquet style;
+- the bouquet face feels designed but the lower section does not;
+- no clear focal hierarchy, weak rhythm, flat depth, mechanical symmetry, or obvious color piles;
+- the result is pleasant but interchangeable with a generic catalog bouquet;
+- flowers collectively form a face, body, object, logo, picture, scene, or source-specific shape;
+- visible cards, text, graphics, wire frameworks, lights, electronics, or unrelated inserts appear;
+- material/color/gradient is invented, construction is implausible, or the execution sheet cannot reproduce the visible result.
 
-The target is:
+Target:
 
-> **recognizable palette + correct color relationships + selective justified gradients + beautiful flower forms + deliberate wrapping architecture + resolved handle finish + memorable bouquet design + florist reproducibility + zero literal source content**
+> recognizable palette + correct color relationships + selective justified gradients + beautiful flower forms + deliberate wrapping architecture + resolved handle finish + memorable bouquet design + florist reproducibility + zero literal source content
 
-## 10. Generate from a short florist brief
+## 9. Generate from a short florist brief
 
 Use a fresh text-to-image path when available.
 
@@ -290,56 +254,105 @@ The generation brief should contain only:
 - depth, movement, negative space;
 - wrapping architecture, materials, layers, and ribbon;
 - stem / handle finish;
-- color-faithful product/editorial photography.
+- neutral color-faithful product/editorial photography.
 
-Useful prompt shape:
+Keep the generation prompt positive and florist-specific.
 
-> Editorial-quality, florist-producible hand-tied bouquet; [mode]; flower-led composition with [hero move]; [materials + counts + treatments]; [palette roles and direction]; [selective gradient moment only if justified]; clear focal/support/bridge hierarchy; varied flower scale and depth; restrained foliage; intentional negative space; [wrapping architecture + materials + layering]; [open/partial/covered handle finish]; neutral color-faithful lighting; believable botanical detail.
+## 10. Final user-facing output contract
 
-Keep the prompt positive and florist-specific.
+This section is mandatory.
 
-## 11. Florist Build Sheet
+### Language
 
-After the final accepted image, output:
+Unless the user explicitly requests another language, **all user-visible text must be Chinese**.
+
+Internal English keywords may be used for reasoning only. Never expose raw internal values such as `preserved`, `strict`, `editorial`, `asymmetric wing`, `covered`, `focal`, `support`, or `bridge` in the final response.
+
+Use these Chinese equivalents when needed:
+- fresh → 鲜花
+- preserved → 永生花
+- hybrid → 混合花材
+- art → 艺术花材
+- natural → 自然
+- balanced → 平衡
+- strict → 严格
+- safe → 克制
+- editorial → 编辑感
+- bold → 大胆
+- open → 露枝
+- partial → 半包
+- covered → 全包
+- open fan → 开放扇形
+- asymmetric wing → 非对称翼形
+- nested cone → 嵌套锥形
+- layered collar → 层叠围边
+- half-enclosed → 半包围
+- covered base → 覆盖式底部
+
+### Output only the finished result
+
+Do **not** output any of the following unless the user explicitly asks:
+- installation/update/version status;
+- test iteration labels such as “第六版”;
+- “已安装最新版”“已完成测试”等 process chatter;
+- local filesystem paths;
+- raw output file paths or “查看图片” links to local paths;
+- Git commit / branch / PR information;
+- supplier verification notes or supplier links;
+- web citations or sourcing links;
+- internal prompt, internal recipe, audit log, or regeneration history;
+- English headings, English role names, or English mode names.
+
+If web/catalog verification was used, use it silently to choose valid materials. Only mention sourcing details if the user asks.
+
+### Final structure
+
+The final response contains only:
+
+1. the final bouquet image, presented through the platform’s image/file output mechanism without printing a local path;
+2. the following concise Chinese execution sheet.
+
+Use **bullets instead of a Markdown table** for materials to avoid broken table rendering.
 
 ```markdown
-# Florist Build Sheet
+# 花艺师执行单
 
-## Design
-- Size: S / M / L
-- Material mode: fresh / preserved / hybrid / art
-- Color fidelity: natural / balanced / strict
-- Design intensity: safe / editorial / bold
-- Core visual idea: ...
-- Hero move: ...
-- Focal / support / bridge: ...
-- Gradient use: none / subtle / moderate; where and why
+## 设计
+- 尺寸：小 / 中 / 大（可补充约宽 × 高）
+- 材质模式：鲜花 / 永生花 / 混合花材 / 艺术花材
+- 色彩还原：自然 / 平衡 / 严格
+- 设计强度：克制 / 编辑感 / 大胆
+- 核心视觉：……
+- 记忆点：……
+- 主花 / 支撑 / 过渡：……
+- 渐变：无 / 轻微 / 适中；说明位置与作用
 
-## Materials
-| Material | Type | Color / treatment | Qty | Role |
-| --- | --- | --- | ---: | --- |
-| ... | fresh / preserved / dried / dyed / artificial | ... | ... | focal / support / bridge / line / filler / foliage |
+## 花材
+- …… × 数量｜类型｜颜色或处理｜作用
+- …… × 数量｜类型｜颜色或处理｜作用
 
-## Wrapping
-- Architecture: open fan / asymmetric wing / nested cone / layered collar / half-enclosed / covered base
-- Outer wrap: ...
-- Inner layer: ...
-- Ribbon: ...
-- Visual role: ...
-- Stem finish: open / partial / covered
+## 包装
+- 包装结构：开放扇形 / 非对称翼形 / 嵌套锥形 / 层叠围边 / 半包围 / 覆盖式底部
+- 外层：……
+- 内层：……
+- 丝带：……
+- 视觉作用：……
+- 花杆处理：露枝 / 半包 / 全包
 
-## Assembly
-1. Establish focal, movement, and depth.
-2. Add support with unequal scale and height.
-3. Add bridge materials and any selective gradient moment without flattening palette contrast.
-4. Build the chosen wrapping architecture and finish the stems/base intentionally.
+## 制作
+1. ……
+2. ……
+3. ……
+4. ……
 
-## Substitutions
-- ... → ...
+## 可替代
+- …… → ……
 
-## Must preserve
-- ...
-- ...
+## 必须保留
+- ……
+- ……
 ```
 
-The build sheet must match the final image exactly and disclose preserved, dyed, dried, artificial, and gradient-treated materials when used.
+Keep the execution sheet concise. Do not repeat design reasoning, testing history, source-analysis notes, or procurement research.
+
+The execution sheet must match the final image exactly and disclose preserved, dyed, dried, artificial, or gradient-treated materials when used.
